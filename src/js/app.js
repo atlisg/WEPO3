@@ -35,7 +35,7 @@ angular.module('evaluationApp').controller('loginController', [
 	function ($scope, $location, $rootScope, $routeParams, $http, evaluationResource) {
 	$scope.token = '';
 
-	$rootScope.login = function() {
+	$scope.login = function() {
 		var loginObject = {user:'bergthor13', pass:'123456'};
 
 		evaluationResource.loginUser(loginObject).then(function(response) {
