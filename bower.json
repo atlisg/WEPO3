@@ -1,0 +1,21 @@
+{
+  "name": "Project 3",
+  "version": "0.0.0",
+  "homepage": "https://github.com/atlisg12/WEPO3",
+  "authors": [
+    "atlisg12 bergthor13 aegir13"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-route": "~1.3.14",
+    "angular": "~1.3.14"
+  }
+}
