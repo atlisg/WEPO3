@@ -3,7 +3,8 @@ angular.module('evaluationApp', ['ngRoute']);
 angular.module('evaluationApp').config(['$routeProvider',
 	function ($routeProvider) {
 		$routeProvider
-			.when('/login', { templateUrl: '../html/login.html',   controller: 'loginController' })
+			.when('/login',             { templateUrl: '../html/login.html',   controller: 'loginController' })
+			.when('/evaluations/:user', { templateUrl: 'evaluations.html', controller: 'loginController' })
 			.otherwise({
 				redirectTo: '/login'
 			});
@@ -39,11 +40,16 @@ angular.module('evaluationApp').controller('loginController', [
 			$scope.token = response.data.Token;
 			var theToken = 'Basic ' + $scope.token;
 			console.log(theToken);
+			// adding the token to the header.
 			$http.defaults.headers.common.Authorization = theToken;
-				evaluationResource.getEvaluations().success(function(data) {
-					// Should be Doddi2
-					console.log(data[0].TemplateName);
-				});
+
+			evaluationResource.getEvaluations().success(function(data) {
+				// Should be Doddi2.
+				console.log(data[0].TemplateName);
+			});
+
+			// Bara leika mer
+			$location.path('/evaluations/' + loginObject.user);
 		});
 
 	};
