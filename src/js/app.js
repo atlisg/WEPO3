@@ -18,12 +18,8 @@ angular.module('evaluationApp').factory('evaluationResource',
 			return $http.post('http://dispatch.ru.is/demo/api/v1/login', loginObject);
 		};
 
-		factory.getEvaluations = function(token) {
-			var tok = 'Basic ' + token;
-			var config = {headers         : {'Authorization': tok},
-			              withCredentials : true
-	        };
-			return $http.get('http://dispatch.ru.is/demo/api/v1/my/evaluations', config);
+		factory.getEvaluations = function() {
+			return $http.get('http://dispatch.ru.is/demo/api/v1/my/evaluations');
 		};
 
 		return factory;
@@ -41,12 +37,15 @@ angular.module('evaluationApp').controller('loginController', [
 		evaluationResource.loginUser(loginObject).then(function(response) {
 			console.log(response);
 			$scope.token = response.data.Token;
-			console.log('Basic ' + $scope.token);
+			var theToken = 'Basic ' + $scope.token;
+			console.log(theToken);
+			$http.defaults.headers.common.Authorization = theToken;
+				evaluationResource.getEvaluations().success(function(data) {
+					// Should be Doddi2
+					console.log(data[0].TemplateName);
+				});
 		});
 
-		evaluationResource.getEvaluations($scope.token).then(function(response) {
-			console.log(response);
-		});
 	};
 
 }]);
