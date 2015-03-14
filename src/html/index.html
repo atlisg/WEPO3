@@ -17,7 +17,7 @@
 	<script type="text/javascript" src="../../bower_components/angular/angular.min.js"></script>
 	<script type="text/javascript" src="../../bower_components/angular-route/angular-route.min.js"></script>
 	<script tyoe="text/javascript" src="../../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-	<script tyoe="text/javascript" src="../js/app.js"></script>
+	<script tyoe="text/javascript" src="../js/app.concat.js"></script>
 </head>
 
 <body ng-app="evaluationApp" id="evaluationBody">
@@ -37,6 +37,7 @@
 					<ul class="nav navbar-nav">
 						<li class=""><a href="#/evaluations" ng-show="userData.username">Kennslumöt</a></li>
 						<li class=""><a href="#/evaluations" ng-show="userData.role === 'admin'">Sniðmát</a></li>
+						<li class=""><a href="#/evaluations" ng-show="userData.role === 'admin'">Niðurstöður</a></li>
 
 					</ul>
 					<ul class="nav navbar-nav navbar-right" ng-show="userData.username">

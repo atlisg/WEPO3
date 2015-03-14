@@ -1,0 +1,31 @@
+{
+  "name": "Proj3",
+  "version": "0.0.0",
+  "description": "Assignment 3 in Web Programming II - Teacher evaluation app",
+  "main": "src/js/app.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/atlisg12/WEPO3.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/atlisg12/WEPO3/issues"
+  },
+  "homepage": "https://github.com/atlisg12/WEPO3",
+  "devDependencies": {
+    "bower": "1.2.6",
+    "grunt": "^0.4.5",
+    "grunt-contrib-concat": "^0.5.1",
+    "grunt-contrib-copy": "^0.8.0",
+    "grunt-contrib-cssmin": "^0.12.2",
+    "grunt-contrib-jshint": "^0.11.0",
+    "grunt-contrib-uglify": "^0.8.0"
+  }
+}
