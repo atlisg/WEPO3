@@ -11,7 +11,7 @@ angular.module('evaluationApp').config(['$routeProvider',
 			});
 	}
 ]);
-
+angular.module('evaluationApp').constant('SERVER_URL', "http://dispatch.ru.is/h07/api/v1/");
 angular.module('evaluationApp').service('currentUser',
 	function() {
 		this.token = '';
@@ -24,7 +24,6 @@ angular.module('evaluationApp').service('currentUser',
 	}
 );
 
-angular.module('evaluationApp').constant('SERVER_URL', "http://dispatch.ru.is/h07/api/v1/");
 
 angular.module('evaluationApp').factory('evaluationResource',
 	function ($http, SERVER_URL, currentUser) {
@@ -44,20 +43,12 @@ angular.module('evaluationApp').factory('evaluationResource',
 	}
 );
 
-angular.module('evaluationApp').controller('indexController', [
-	'$scope', '$rootScope', 'currentUser',
-	function ($scope, $rootScope, currentUser) {
-		$rootScope.$on('userLoggedIn', function() {
-			$scope.userData = currentUser;
-		});
-	}
-]);
 
 angular.module('evaluationApp').controller('authenticationController', [
 	'$scope', '$location', '$rootScope', '$routeParams', '$http', 'evaluationResource', 'currentUser',
 	function ($scope, $location, $rootScope, $routeParams, $http, evaluationResource, currentUser) {
 		$scope.user = 'bergthor13';
-		$scope.pass = '';
+		$scope.pass = '123456';
 		$scope.errorMessage = '';
 		$scope.warningMessage = '';
 		$scope.login = function() {
@@ -67,15 +58,15 @@ angular.module('evaluationApp').controller('authenticationController', [
 				                pass: $scope.pass };
 
 			// Error checking the form.
-			if ($scope.user.length === 0 /*|| $scope.pass.length === 0*/) {
+			if ($scope.user.length === 0 || $scope.pass.length === 0) {
 
 				if ($scope.user.length === 0) {
 					$scope.warningMessage = 'Þú verður að setja inn notandanafn. ';
 				}
 
-				// if ($scope.pass.length === 0) {
-				// 	$scope.warningMessage += 'Þú verður að setja inn lykilorð. ';
-				// }
+				if ($scope.pass.length === 0) {
+					$scope.warningMessage += 'Þú verður að setja inn lykilorð. ';
+				}
 
 				return;
 			}
@@ -110,7 +101,6 @@ angular.module('evaluationApp').controller('authenticationController', [
 
 		};
 }]);
-
 angular.module('evaluationApp').controller('evaluationsController', [
 	'$scope', '$location', '$rootScope', '$routeParams', '$http', 'evaluationResource', 'currentUser',
 	function ($scope, $location, $rootScope, $routeParams, $http, evaluationResource, currentUser) {
@@ -132,6 +122,15 @@ angular.module('evaluationApp').controller('evaluationsController', [
 			$scope.evaluations = data;
 		}).error(function(data) {
 			// TODO: Error handling for the evaluations list.
+		});
+	}
+]);
+// This controller is used to pass data to the index.html file.
+angular.module('evaluationApp').controller('indexController', [
+	'$scope', '$rootScope', 'currentUser',
+	function ($scope, $rootScope, currentUser) {
+		$rootScope.$on('userLoggedIn', function() {
+			$scope.userData = currentUser;
 		});
 	}
 ]);

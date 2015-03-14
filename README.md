@@ -1,4 +1,4 @@
-# WEPO3
+# Dark Teacher Evaluations
 Assignment 3 in Web Programming II - Teacher evaluation app
 
 ## How to run

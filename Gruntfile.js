@@ -31,7 +31,7 @@ module.exports = function ( grunt ) {
 		},
 		concat: {
 			bar: {
-				src: ['src/js/*.js', '!src/js/app.concat.js', '!src/js/app.min.js'],
+				src: ['src/js/*.js', 'src/js/Factories/*.js','src/js/Controllers/*.js', '!src/js/app.concat.js', '!src/js/app.min.js'],
 				dest: 'src/js/app.concat.js',
 			},
 		},

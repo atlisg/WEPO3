@@ -1,0 +1,1 @@
+angular.module('evaluationApp').constant('SERVER_URL', "http://dispatch.ru.is/h07/api/v1/");
