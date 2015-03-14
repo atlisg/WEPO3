@@ -1,1 +1,13 @@
-<p>HERNA</p>
+<p>Velkomin(n) {{fullName}}.</p>
+
+<div class="alert alert-info" ng-cloak ng-show="infoMessage != ''">
+	<span class="glyphicon glyphicon-info-sign"></span>    {{infoMessage}}
+</div>
+
+<div ng-repeat="evaluation in evaluations">
+	{{evaluation.CourseID}} -
+	{{evaluation.CourseName}} -
+	{{evaluation.ID}} -
+	{{evaluation.Semester}} -
+	{{evaluation.TemplateName}}
+</div>

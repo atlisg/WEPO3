@@ -1,1 +1,27 @@
-<button class="btn btn-primary" ng-click="login()">Test</button>
+<div class="container">
+	<div class="col-md-6">
+		<div class="panel panel-default">
+			<div class="panel-heading">Skráðu þig inn</div>
+			<div class="panel-body">
+
+				<div class="alert alert-danger" ng-cloak ng-show="errorMessage != ''">
+					{{errorMessage}}
+				</div>
+				<div class="alert alert-warning" ng-cloak ng-show="warningMessage != ''">
+					{{warningMessage}}
+				</div>
+
+				<div class="form-group">
+					<form name="loginForm">
+						<label for="username" class="control-label">Notandanafn</label>
+						<input type="text" class="form-control" id="username" name="username" ng-model="user" required/>
+						<label for="password" class="control-label password">Lykilorð</label>
+						<input type="password" class="form-control" id="password" name="password" ng-model="pass" required/>
+					</form>
+				</div>
+
+				<button type="button" class="btn btn-primary" ng-click="login()">Innskrá</button>
+			</div>
+		</div>
+	</div>
+</div>

@@ -31,3 +31,14 @@
 	margin-top: 10px;
 	margin-bottom: 10px;
 }
+.main-view {
+	padding-top:70px;
+}
+
+.panel-heading {
+	text-align: center;
+}
+
+.control-label.password {
+	margin-top:20px;
+}
