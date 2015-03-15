@@ -1,0 +1,11 @@
+<p>Velkomin(n) {{fullName}}.</p>
+
+<div class="alert alert-info" ng-cloak ng-show="infoMessage != ''">
+	<span class="glyphicon glyphicon-info-sign"></span>    {{infoMessage}}
+</div>
+
+<div ng-repeat="template in templates">
+	{{template.ID}} -
+	{{template.TemplateName}} - 
+	{{template.TemplateNameEN}}
+</div>

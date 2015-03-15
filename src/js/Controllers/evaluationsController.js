@@ -8,11 +8,12 @@ angular.module('evaluationApp').controller('evaluationsController', [
 			return;
 		}
 
-		$scope.evaluations = {};
 		$scope.fullName = currentUser.fullName;
 		$scope.infoMessage = '';
+		$scope.evaluations = {};
 
 		evaluationResource.getEvaluations().success(function(data) {
+			console.log(data);
 			if(data.length === 0) {
 				$scope.infoMessage = 'Engin kennslumöt, sem þú getur tekið, eru til staðar.';
 			}
@@ -20,5 +21,12 @@ angular.module('evaluationApp').controller('evaluationsController', [
 		}).error(function(data) {
 			// TODO: Error handling for the evaluations list.
 		});
+
+		$scope.dateIsActive = function(startDate, endDate) {
+			var start = new Date(startDate);
+			var end = new Date(endDate);
+			var now = new Date(Date.now());
+			return start < now && now < end;
+		};
 	}
 ]);

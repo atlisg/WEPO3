@@ -9,10 +9,19 @@ angular.module('evaluationApp').factory('evaluationResource',
 
 		factory.getEvaluations = function() {
 			$http.defaults.headers.common.Authorization = "Basic " + currentUser.token;
-			return $http.get(SERVER_URL + 'evaluations');
+			return $http.get(SERVER_URL + 'my/evaluations');
+		};
+
+		factory.getEvaluation = function(id, course, semester) {
+			$http.defaults.headers.common.Authorization = "Basic " + currentUser.token;
+			return $http.get(SERVER_URL + 'courses/' + course + '/' + semester + '/evaluations/' + id);
+		};
+
+		factory.getTemplates = function() {
+			$http.defaults.headers.common.Authorization = "Basic " + currentUser.token;
+			return $http.get(SERVER_URL + 'evaluationtemplates');
 		};
 
 		return factory;
 	}
 );
-
