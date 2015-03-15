@@ -11,9 +11,16 @@ angular.module('evaluationApp').controller('evaluationController', [
 		$scope.courseID   = $routeParams.courseID;
 		$scope.semesterID = $routeParams.semesterID;
 
+		$scope.evaluation = {};
+
 		evaluationResource.getEvaluation($scope.evalID, $scope.courseID, $scope.semesterID)
 		.success(function(data) {
-			console.log(data);
+			$scope.evaluation.id       = data.ID;
+			$scope.evaluation.title    = data.Title;
+			$scope.evaluation.intro    = data.IntroText;
+			$scope.evaluation.courseQ  = data.CourseQuestions;
+			$scope.evaluation.teacherQ = data.TeacherQuestions;
+			console.log($scope.evaluation);
 		});
 	}
 ]);

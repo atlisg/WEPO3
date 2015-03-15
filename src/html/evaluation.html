@@ -1,1 +1,10 @@
-<p>This is {{evalID}} evaluation for {{courseID}} in the semester {{semesterID}}.</p>
+<h2>{{evaluation.title}}</h2>
+Lýsing:
+<div class="well-sm well">
+	<p>{{evaluation.intro}}</p>
+</div>
+Course Questions<br>
+<evaluation-question ng­-model="evaluation.courseQ"  ng-repeat="question in evaluation.courseQ"></evaluation-question>
+<hr>
+Teacher Questions<br>
+<evaluation-question ng­-model="evaluation.teacherQ" ng-repeat="question in evaluation.teacherQ"></evaluation-question>

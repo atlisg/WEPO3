@@ -12,6 +12,9 @@ angular.module('evaluationApp').config(['$routeProvider',
 			});
 	}
 ]);
+angular.module('evaluationApp').directive('evaluationQuestion', function() {
+	return {restrict: 'E', templateUrl: '../html/evaluationQuestion.html'};
+});
 angular.module('evaluationApp').constant('SERVER_URL', "http://dispatch.ru.is/demo/api/v1/");
 angular.module('evaluationApp').service('currentUser',
 	function() {
@@ -44,12 +47,9 @@ angular.module('evaluationApp').factory('evaluationResource',
 			$http.defaults.headers.common.Authorization = "Basic " + currentUser.token;
 			return $http.get(SERVER_URL + 'courses/' + course + '/' + semester + '/evaluations/' + id);
 		};
-
 		return factory;
 	}
 );
-
-
 angular.module('evaluationApp').controller('authenticationController', [
 	'$scope', '$location', '$rootScope', '$routeParams', '$http', 'evaluationResource', 'currentUser',
 	function ($scope, $location, $rootScope, $routeParams, $http, evaluationResource, currentUser) {
@@ -110,9 +110,16 @@ angular.module('evaluationApp').controller('evaluationController', [
 		$scope.courseID   = $routeParams.courseID;
 		$scope.semesterID = $routeParams.semesterID;
 
+		$scope.evaluation = {};
+
 		evaluationResource.getEvaluation($scope.evalID, $scope.courseID, $scope.semesterID)
 		.success(function(data) {
-			console.log(data);
+			$scope.evaluation.id       = data.ID;
+			$scope.evaluation.title    = data.Title;
+			$scope.evaluation.intro    = data.IntroText;
+			$scope.evaluation.courseQ  = data.CourseQuestions;
+			$scope.evaluation.teacherQ = data.TeacherQuestions;
+			console.log($scope.evaluation);
 		});
 	}
 ]);
