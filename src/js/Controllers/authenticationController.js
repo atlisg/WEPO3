@@ -59,5 +59,5 @@ angular.module('evaluationApp').controller('authenticationController', [
 
 		$rootScope.testShit = function() {
 			return 1992;
-		}
+		};
 }]);

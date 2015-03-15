@@ -17,6 +17,11 @@ angular.module('evaluationApp').factory('adminResource',
 			return $http.get(SERVER_URL + 'evaluationtemplates');
 		};
 
+		factory.getEvaluationResults = function(id) {
+			$http.defaults.headers.common.Authorization = "Basic " + currentUser.token;
+			return $http.get(SERVER_URL + 'evaluations/'+id);
+		};
+
 		return factory;
 	}
 );
