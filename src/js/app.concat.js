@@ -6,6 +6,7 @@ angular.module('evaluationApp').config(['$routeProvider',
 		$routeProvider
 			.when('/login',        { templateUrl: '../html/login.html',       controller: 'authenticationController' })
 			.when('/evaluations/', { templateUrl: '../html/evaluations.html', controller: 'evaluationsController'    })
+			.when('/evaluation/:semesterID/:courseID/:ID', { templateUrl: '../html/evaluation.html', controller: 'evaluationController'    })
 			.otherwise({
 				redirectTo: '/login'
 			});
@@ -37,6 +38,11 @@ angular.module('evaluationApp').factory('evaluationResource',
 		factory.getEvaluations = function() {
 			$http.defaults.headers.common.Authorization = "Basic " + currentUser.token;
 			return $http.get(SERVER_URL + 'my/evaluations');
+		};
+
+		factory.getEvaluation = function(id, course, semester) {
+			$http.defaults.headers.common.Authorization = "Basic " + currentUser.token;
+			return $http.get(SERVER_URL + 'courses/' + course + '/' + semester + '/evaluations/' + id);
 		};
 
 		return factory;
@@ -91,6 +97,25 @@ angular.module('evaluationApp').controller('authenticationController', [
 
 		};
 }]);
+angular.module('evaluationApp').controller('evaluationController', [
+	'$scope', '$location', '$rootScope', '$routeParams', '$http', 'evaluationResource', 'currentUser',
+	function ($scope, $location, $rootScope, $routeParams, $http, evaluationResource, currentUser) {
+		// If the user didn't go through login,
+		// redirect them to the login page.
+		if(currentUser.username === '') {
+			$location.path('/login');
+			return;
+		}
+		$scope.evalID     = $routeParams.ID;
+		$scope.courseID   = $routeParams.courseID;
+		$scope.semesterID = $routeParams.semesterID;
+
+		evaluationResource.getEvaluation($scope.evalID, $scope.courseID, $scope.semesterID)
+		.success(function(data) {
+			console.log(data);
+		});
+	}
+]);
 angular.module('evaluationApp').controller('evaluationsController', [
 	'$scope', '$location', '$rootScope', '$routeParams', '$http', 'evaluationResource', 'currentUser',
 	function ($scope, $location, $rootScope, $routeParams, $http, evaluationResource, currentUser) {

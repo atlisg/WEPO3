@@ -6,6 +6,7 @@ angular.module('evaluationApp').config(['$routeProvider',
 		$routeProvider
 			.when('/login',        { templateUrl: '../html/login.html',       controller: 'authenticationController' })
 			.when('/evaluations/', { templateUrl: '../html/evaluations.html', controller: 'evaluationsController'    })
+			.when('/evaluation/:semesterID/:courseID/:ID', { templateUrl: '../html/evaluation.html', controller: 'evaluationController'    })
 			.otherwise({
 				redirectTo: '/login'
 			});

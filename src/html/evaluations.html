@@ -6,7 +6,7 @@
 
 <div id="comment-item" class="well well-sm" ng-repeat="evaluation in evaluations">
 	<div>
-		<a href="#/evaluation/{{evaluation.SemesterID}}/{{evaluation.CourseID}}">{{evaluation.CourseID}} - {{evaluation.CourseName}}</a>
+		<a href="#/evaluation/{{evaluation.Semester}}/{{evaluation.CourseID}}/{{evaluation.ID}}">{{evaluation.CourseID}} - {{evaluation.CourseName}}</a>
 		<span class="pull-right">{{evaluation.Semester}}</span>
 	</div>
 </div>
