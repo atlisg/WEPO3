@@ -1,12 +1,33 @@
 <p>Velkomin(n) {{fullName}}.</p>
-
 <div class="alert alert-info" ng-cloak ng-show="infoMessage != ''">
 	<span class="glyphicon glyphicon-info-sign"></span>    {{infoMessage}}
 </div>
 
-<div id="comment-item" class="well well-sm" ng-repeat="evaluation in evaluations">
-	<div>
-		<a href="#/evaluation/{{evaluation.Semester}}/{{evaluation.CourseID}}/{{evaluation.ID}}">{{evaluation.CourseID}} - {{evaluation.CourseName}}</a> {{evaluation.TemplateName}}
-		<span class="pull-right">{{evaluation.Semester}}</span>
+<div class="well well-sm" ng-repeat="evaluation in evaluationsS" ng-show="role !== 'admin'">
+	<a href="#/evaluation/{{evaluation.Semester}}/{{evaluation.CourseID}}/{{evaluation.ID}}">
+		<div class="studentEvaluationLink">
+			<span>
+				{{evaluation.TemplateName}}
+			</span>
+			<div class="evaluationsTemplateName">
+				{{evaluation.CourseID}} - {{evaluation.CourseName}}
+			</div>
+		</div>
+	</a>
+</div>
+
+<div id="admin-evaluation-well" class="well" ng-repeat="evaluation in evaluationsA" ng-show="role === 'admin'">
+	<div class="row">
+		<div id="admin-evaluation-well-name" class="col-xs-6">
+		<span class="glyphicon glyphicon-certificate" ng-show="evaluation.Status === 'new'"style="color:blue;"></span>
+		<span class="glyphicon glyphicon-certificate" ng-show="evaluation.Status === 'open'" style="color:green;"></span>
+		<span class="glyphicon glyphicon-certificate" ng-show="evaluation.Status === 'closed'" style="color:red;"></span>
+			<a href="#/evaluation/{{evaluation.ID}}">{{evaluation.TemplateTitle}}</a>
+		</div>
+
+		<div id="admin-evaluation-well-dates" class="container pull-right">
+			<small class="pull-right">Byrjar: {{evaluation.StartDate}}</small>
+			<small class="pull-right">Endar: {{evaluation.EndDate}}</small>
+		</div>
 	</div>
 </div>

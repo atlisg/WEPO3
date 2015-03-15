@@ -1,6 +1,6 @@
 angular.module('evaluationApp').controller('evaluationController', [
-	'$scope', '$location', '$rootScope', '$routeParams', '$http', 'evaluationResource', 'currentUser',
-	function ($scope, $location, $rootScope, $routeParams, $http, evaluationResource, currentUser) {
+	'$scope', '$location', '$rootScope', '$routeParams', '$http', 'adminResource', 'studentResource', 'currentUser',
+	function ($scope, $location, $rootScope, $routeParams, $http, adminResource, studentResource, currentUser) {
 		// If the user didn't go through login,
 		// redirect them to the login page.
 		if(currentUser.username === '') {
@@ -13,7 +13,7 @@ angular.module('evaluationApp').controller('evaluationController', [
 
 		$scope.evaluation = {};
 
-		evaluationResource.getEvaluation($scope.evalID, $scope.courseID, $scope.semesterID)
+		studentResource.getEvaluation($scope.evalID, $scope.courseID, $scope.semesterID)
 		.success(function(data) {
 			$scope.evaluation.id       = data.ID;
 			$scope.evaluation.title    = data.Title;
