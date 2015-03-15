@@ -1,8 +1,8 @@
 angular.module('evaluationApp').controller('authenticationController', [
 	'$scope', '$location', '$rootScope', '$routeParams', '$http', 'evaluationResource', 'currentUser',
 	function ($scope, $location, $rootScope, $routeParams, $http, evaluationResource, currentUser) {
-		$scope.user = '';
-		$scope.pass = '';
+		$scope.user = 'bergthor13';
+		$scope.pass = '123456';
 		$scope.errorMessage = '';
 		$scope.warningMessage = '';
 		$scope.submitted = false;

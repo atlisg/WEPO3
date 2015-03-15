@@ -9,7 +9,7 @@ angular.module('evaluationApp').factory('evaluationResource',
 
 		factory.getEvaluations = function() {
 			$http.defaults.headers.common.Authorization = "Basic " + currentUser.token;
-			return $http.get(SERVER_URL + 'evaluations');
+			return $http.get(SERVER_URL + 'my/evaluations');
 		};
 
 		return factory;

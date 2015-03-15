@@ -36,7 +36,7 @@ angular.module('evaluationApp').factory('evaluationResource',
 
 		factory.getEvaluations = function() {
 			$http.defaults.headers.common.Authorization = "Basic " + currentUser.token;
-			return $http.get(SERVER_URL + 'evaluations');
+			return $http.get(SERVER_URL + 'my/evaluations');
 		};
 
 		return factory;
@@ -47,8 +47,8 @@ angular.module('evaluationApp').factory('evaluationResource',
 angular.module('evaluationApp').controller('authenticationController', [
 	'$scope', '$location', '$rootScope', '$routeParams', '$http', 'evaluationResource', 'currentUser',
 	function ($scope, $location, $rootScope, $routeParams, $http, evaluationResource, currentUser) {
-		$scope.user = '';
-		$scope.pass = '';
+		$scope.user = 'bergthor13';
+		$scope.pass = '123456';
 		$scope.errorMessage = '';
 		$scope.warningMessage = '';
 		$scope.submitted = false;
@@ -101,11 +101,12 @@ angular.module('evaluationApp').controller('evaluationsController', [
 			return;
 		}
 
-		$scope.evaluations = {};
 		$scope.fullName = currentUser.fullName;
 		$scope.infoMessage = '';
+		$scope.evaluations = {};
 
 		evaluationResource.getEvaluations().success(function(data) {
+			console.log(data);
 			if(data.length === 0) {
 				$scope.infoMessage = 'Engin kennslumöt, sem þú getur tekið, eru til staðar.';
 			}
@@ -113,6 +114,13 @@ angular.module('evaluationApp').controller('evaluationsController', [
 		}).error(function(data) {
 			// TODO: Error handling for the evaluations list.
 		});
+
+		$scope.dateIsActive = function(startDate, endDate) {
+			var start = new Date(startDate);
+			var end = new Date(endDate);
+			var now = new Date(Date.now());
+			return start < now && now < end;
+		};
 	}
 ]);
 // This controller is used to pass data to the index.html file.

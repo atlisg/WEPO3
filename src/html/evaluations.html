@@ -4,10 +4,9 @@
 	<span class="glyphicon glyphicon-info-sign"></span>    {{infoMessage}}
 </div>
 
-<div ng-repeat="evaluation in evaluations">
-	{{evaluation.CourseID}} -
-	{{evaluation.CourseName}} -
-	{{evaluation.ID}} -
-	{{evaluation.Semester}} -
-	{{evaluation.TemplateName}}
+<div id="comment-item" class="well well-sm" ng-repeat="evaluation in evaluations">
+	<div>
+		<a href="#/evaluation/{{evaluation.SemesterID}}/{{evaluation.CourseID}}">{{evaluation.CourseID}} - {{evaluation.CourseName}}</a>
+		<span class="pull-right">{{evaluation.Semester}}</span>
+	</div>
 </div>
