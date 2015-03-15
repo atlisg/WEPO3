@@ -39,6 +39,14 @@
 	text-align: center;
 }
 
-.control-label.password {
+#login-password {
 	margin-top:20px;
+}
+
+.validationLabel {
+	color:red;
+}
+
+#login-error-message {
+	margin-top:10px;
 }

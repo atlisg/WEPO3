@@ -4,14 +4,14 @@ angular.module('evaluationApp').config(['$routeProvider',
 	function ($routeProvider) {
 
 		$routeProvider
-			.when('/login',        { templateUrl: '../html/login.html',   controller: 'authenticationController' })
-			.when('/evaluations/', { templateUrl: 'evaluations.html', controller: 'evaluationsController' })
+			.when('/login',        { templateUrl: '../html/login.html',       controller: 'authenticationController' })
+			.when('/evaluations/', { templateUrl: '../html/evaluations.html', controller: 'evaluationsController'    })
 			.otherwise({
 				redirectTo: '/login'
 			});
 	}
 ]);
-angular.module('evaluationApp').constant('SERVER_URL', "http://dispatch.ru.is/h07/api/v1/");
+angular.module('evaluationApp').constant('SERVER_URL', "http://dispatch.ru.is/demo/api/v1/");
 angular.module('evaluationApp').service('currentUser',
 	function() {
 		this.token = '';
@@ -36,7 +36,7 @@ angular.module('evaluationApp').factory('evaluationResource',
 
 		factory.getEvaluations = function() {
 			$http.defaults.headers.common.Authorization = "Basic " + currentUser.token;
-			return $http.get(SERVER_URL + 'my/evaluations');
+			return $http.get(SERVER_URL + 'evaluations');
 		};
 
 		return factory;
@@ -47,38 +47,28 @@ angular.module('evaluationApp').factory('evaluationResource',
 angular.module('evaluationApp').controller('authenticationController', [
 	'$scope', '$location', '$rootScope', '$routeParams', '$http', 'evaluationResource', 'currentUser',
 	function ($scope, $location, $rootScope, $routeParams, $http, evaluationResource, currentUser) {
-		$scope.user = 'bergthor13';
-		$scope.pass = '123456';
+		$scope.user = '';
+		$scope.pass = '';
 		$scope.errorMessage = '';
 		$scope.warningMessage = '';
+		$scope.submitted = false;
 		$scope.login = function() {
 			$scope.errorMessage = '';
-			$scope.warningMessage = '';
+			$scope.submitted = true;
 			var loginObject = { user: $scope.user,
 				                pass: $scope.pass };
 
-			// Error checking the form.
-			if ($scope.user.length === 0 || $scope.pass.length === 0) {
-
-				if ($scope.user.length === 0) {
-					$scope.warningMessage = 'Þú verður að setja inn notandanafn. ';
-				}
-
-				if ($scope.pass.length === 0) {
-					$scope.warningMessage += 'Þú verður að setja inn lykilorð. ';
-				}
-
-				return;
+			if ($scope.loginForm.$valid) {
+				evaluationResource.loginUser(loginObject).success(function(data) {
+					// Put in the data for the user that logged in.
+					$scope.getUserData(data);
+					$rootScope.$broadcast('userLoggedIn');
+					$location.path('/evaluations');
+				}).error(function() {
+					$scope.errorMessage = 'Það kom upp villa. Þú hefur mögulega slegið inn rangt notandanafn eða lykilorð.';
+				});
 			}
 
-			evaluationResource.loginUser(loginObject).success(function(data) {
-				// Put in the data for the user that logged in.
-				$scope.getUserData(data);
-				$rootScope.$broadcast('userLoggedIn');
-				$location.path('/evaluations');
-			}).error(function() {
-				$scope.errorMessage = 'Það kom upp villa. Þú hefur mögulega slegið inn rangt notandanafn eða lykilorð.';
-			});
 		};
 
 		$scope.getUserData = function(loginData) {
