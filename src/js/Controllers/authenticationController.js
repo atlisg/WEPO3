@@ -42,6 +42,9 @@ angular.module('evaluationApp').controller('authenticationController', [
 			currentUser.ssn      = '';
 			currentUser.imageURL = '';
 			$location.path('/login');
-
 		};
+
+		$rootScope.testShit = function() {
+			return 1992;
+		}
 }]);
