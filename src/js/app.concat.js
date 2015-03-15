@@ -6,6 +6,7 @@ angular.module('evaluationApp').config(['$routeProvider',
 		$routeProvider
 			.when('/login',        { templateUrl: '../html/login.html',   controller: 'authenticationController' })
 			.when('/evaluations/', { templateUrl: 'evaluations.html', controller: 'evaluationsController' })
+			.when('/templates/',   { templateUrl: 'templates.html', controller: 'templatesController' })
 			.otherwise({
 				redirectTo: '/login'
 			});
@@ -37,6 +38,11 @@ angular.module('evaluationApp').factory('evaluationResource',
 		factory.getEvaluations = function() {
 			$http.defaults.headers.common.Authorization = "Basic " + currentUser.token;
 			return $http.get(SERVER_URL + 'my/evaluations');
+		};
+
+		factory.getTemplates = function() {
+			$http.defaults.headers.common.Authorization = "Basic " + currentUser.token;
+			return $http.get(SERVER_URL + 'evaluationtemplates');
 		};
 
 		return factory;
@@ -73,9 +79,14 @@ angular.module('evaluationApp').controller('authenticationController', [
 
 			evaluationResource.loginUser(loginObject).success(function(data) {
 				// Put in the data for the user that logged in.
+				console.log(currentUser.role);
 				$scope.getUserData(data);
 				$rootScope.$broadcast('userLoggedIn');
-				$location.path('/evaluations');
+				if (currentUser.role === 'admin') {
+					$location.path('/templates');
+				} else {
+					$location.path('/evaluations');
+				}
 			}).error(function() {
 				$scope.errorMessage = 'Það kom upp villa. Þú hefur mögulega slegið inn rangt notandanafn eða lykilorð.';
 			});
@@ -131,6 +142,30 @@ angular.module('evaluationApp').controller('indexController', [
 	function ($scope, $rootScope, currentUser) {
 		$rootScope.$on('userLoggedIn', function() {
 			$scope.userData = currentUser;
+		});
+	}
+]);
+angular.module('evaluationApp').controller('templatesController', [
+	'$scope', '$location', '$rootScope', '$routeParams', '$http', 'evaluationResource', 'currentUser',
+	function ($scope, $location, $rootScope, $routeParams, $http, evaluationResource, currentUser) {
+		// If the user didn't go through login,
+		// redirect them to the login page.
+		if(currentUser.username === '') {
+			$location.path('/login');
+			return;
+		}
+
+		$scope.templates = {};
+		$scope.fullName = currentUser.fullName;
+		$scope.infoMessage = '';
+
+		evaluationResource.getTemplates().success(function(data) {
+			if (data.length === 0) {
+				$scope.infoMessage = 'Engin sniðmát eru til staðar.';
+			}
+			$scope.templates = data;
+		}).error(function(data) {
+			// Handle this error!
 		});
 	}
 ]);

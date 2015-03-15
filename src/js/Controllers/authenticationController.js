@@ -27,9 +27,14 @@ angular.module('evaluationApp').controller('authenticationController', [
 
 			evaluationResource.loginUser(loginObject).success(function(data) {
 				// Put in the data for the user that logged in.
+				console.log(currentUser.role);
 				$scope.getUserData(data);
 				$rootScope.$broadcast('userLoggedIn');
-				$location.path('/evaluations');
+				if (currentUser.role === 'admin') {
+					$location.path('/templates');
+				} else {
+					$location.path('/evaluations');
+				}
 			}).error(function() {
 				$scope.errorMessage = 'Það kom upp villa. Þú hefur mögulega slegið inn rangt notandanafn eða lykilorð.';
 			});

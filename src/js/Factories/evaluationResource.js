@@ -12,6 +12,11 @@ angular.module('evaluationApp').factory('evaluationResource',
 			return $http.get(SERVER_URL + 'my/evaluations');
 		};
 
+		factory.getTemplates = function() {
+			$http.defaults.headers.common.Authorization = "Basic " + currentUser.token;
+			return $http.get(SERVER_URL + 'evaluationtemplates');
+		};
+
 		return factory;
 	}
 );
