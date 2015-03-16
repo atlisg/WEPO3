@@ -12,6 +12,15 @@ angular.module('evaluationApp').controller('templatesController', [
 		$scope.fullName = currentUser.fullName;
 		$scope.infoMessage = '';
 
+		$scope.createTemplate = function() {
+			$location.path('/template');
+		};
+
+		$scope.editTemplate = function(ID) {
+			console.log(ID);
+			$location.path('/template/' + ID);
+		};
+
 		evaluationResource.getTemplates().success(function(data) {
 			if (data.length === 0) {
 				$scope.infoMessage = 'Engin sniðmát eru til staðar.';

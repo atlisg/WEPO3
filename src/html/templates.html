@@ -1,11 +1,13 @@
 <p>Velkomin(n) {{fullName}}.</p>
 
+<button type="button" class="btn btn-primary" ng-click="createTemplate()">New Template</button>
+
 <div class="alert alert-info" ng-cloak ng-show="infoMessage != ''">
 	<span class="glyphicon glyphicon-info-sign"></span>    {{infoMessage}}
 </div>
 
 <div ng-repeat="template in templates">
-	{{template.ID}} -
-	{{template.TemplateName}} - 
-	{{template.TemplateNameEN}}
+	<a href="#/template/{{template.ID}}">{{template.ID}}</a> -
+	{{template.Title}} - 
+	{{template.TitleEN}}
 </div>

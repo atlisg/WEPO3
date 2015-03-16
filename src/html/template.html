@@ -1,0 +1,32 @@
+<h2 ng-show="template.ID">{{template.title}}.</h2>
+<h2 ng-show="!template.ID">Nýtt Sniðmát.</h2>
+
+<div class="form-group">
+	<form name="templateForm">
+		<label for="templateTitle" class="control-label">Titill sniðmáts</label>
+		<input type="text" class="form-control" id="templateTitle" name="templateTitle" ng-model="template.Title" placeholder="" required/>
+		<label for="templateTitleEN" class="control-label">Titill sniðmáts á ensku</label>
+		<input type="text" class="form-control" id="templateTitleEN" name="templateTitleEN" ng-model="template.TitleEN" placeholder="" required/>
+		<label for="templateIntro" class="control-label">Kynningartexti sniðmáts</label>
+		<textarea class="form-control" id="templateIntro" name="templateIntro" ng-model="template.IntroText" required></textarea>
+		<label for="templateIntroEN" class="control-label">Kynningartexti sniðmáts á ensku</label>
+		<textarea class="form-control" id="templateIntroEN" name="templateIntroEN" ng-model="template.IntroTextEN" required><textarea/>
+
+		<h4>Course Questions</h4>
+		<div ng-repeat="question in CourseQuestions">
+			<label for="questionText" class="control-label">Texti spurningar á íslensku</label>
+			<textarea class="form-control" id="questionText" name="questionText" ng-model="Text" placeholder="{{cqstns.text}}"></textarea>/> - 
+			<label for="questionTextEN" class="control-label">Texti spurningar á ensku</label>
+			<textarea class="form-control" id="questionTextEN" name="questionTextEN" ng-model="qstnTextEN" placeholder="{{cqstns.textEN}}"></textarea>/> - 
+			<label for="type">Tegund spurningar</label> 
+			<input type="radio" name="type" ng-repeat="option in options"/> {{option}}
+			<button type="button" class="btn btn-primary" ng-click="addChoice()">Bæta við svarmöguleika</button>
+		</div>
+
+		<button type="button" class="btn btn-primary" ng-click="addQuestion()">Bæta við spurningu</button>
+
+		<h4>Teacher Questions</h4>
+
+		<button type="button" class="btn btn-primary" ng-click="newTemplate()">Bæta við spurningu</button>
+	</form>
+</div>
