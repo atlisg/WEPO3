@@ -11,6 +11,7 @@
 		<span> {{template.ID}} {{template.Title}} ({{template.TitleEN}})</span>
 		<p>Byrjunardagsetning: <input type="text" id="beginDatepicker"></p>
 		<p>Endadagsetning: <input type="text" id="endDatepicker"></p>
+		<button type="button" class="pull-right btn btn-primary" ng-click="pickBeginDate()">Velja byrjunardagsetningu</button>
 		<button type="button" class="pull-right btn btn-primary" ng-click="makeEvaluation('{{template.ID}}')">Búa til kennslumat</button>
 	</div>
 </div>

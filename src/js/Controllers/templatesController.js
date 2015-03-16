@@ -20,14 +20,12 @@ angular.module('evaluationApp').controller('templatesController', [
 
 		};
 
-		var startDate = $(function() {
+		$scope.pickBeginDate = function() {
     		$( "#beginDatepicker" ).datepicker();
-  		});
-  		var endDate = $(function() {
+  		};
+		$scope.pickEndDate = function() {
     		$( "#endDatepicker" ).datepicker();
-  		});
-  		console.log(startDate);
-  		console.log(endDate);
+  		};
 
 		adminResource.getTemplates().success(function(data) {
 			if (data.length === 0) {
