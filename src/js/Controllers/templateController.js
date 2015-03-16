@@ -9,6 +9,7 @@ angular.module('evaluationApp').controller('templateController', [
 		$scope.template.IntroTextEN      = '';
 		$scope.template.CourseQuestions  = [];
 		$scope.template.TeacherQuestions = [];
+		$scope.answerID					 = 0;
 		if ($routeParams.ID !== undefined) {
 			console.log("fetching info for " + $routeParams.ID);
 			adminResource.getTemplate($routeParams.ID).success(function(data) {
@@ -21,19 +22,51 @@ angular.module('evaluationApp').controller('templateController', [
 				$scope.template.TeacherQuestions = data.TeacherQuestions;
 			});
 		}
+		$scope.options = ['skrifleg' , 'einvals', 'fjölvals'];
 
-		$scope.addQuestion = function() {
+		$scope.addQuestion = function(type) {
 			var newQ = {
 				ID: 0,
-				text: '',
-				textEN: '',
-				type: '',
-				answers: []
+				Text: '',
+				TextEN: '',
+				ImageURL: '',
+				Type: 'skrifleg',
+				Answers: [{
+					ID: $scope.answerID++,
+					Text: '',
+					TextEN: '',
+					ImageURL: '',
+					Weight: 5
+				}]
 			};
-			if ($scope.cqstns.length() !== 0) {
-				newQ.ID = $scope.cqstns[$scope.cqstns.length() - 1].ID + 1;
+			if (type === 'course') {
+				if ($scope.template.CourseQuestions.length !== 0) {
+					newQ.ID = $scope.template.CourseQuestions[$scope.template.CourseQuestions.length - 1].ID + 1;
+				}
+				$scope.template.CourseQuestions.push(newQ);
+			} else if (type === 'teacher') {
+				if ($scope.template.TeacherQuestions.length !== 0) {
+					newQ.ID = $scope.template.TeacherQuestions[$scope.template.TeacherQuestions.length - 1].ID + 1;
+				}
+				$scope.template.TeacherQuestions.push(newQ);
 			}
-			$scope.template.cqstns.push(newQ);
+		};
+
+		$scope.addChoice = function (type, questionID) {
+			var newA = {
+				ID: $scope.answerID++,
+				Text: '',
+				TextEN: '',
+				ImageURL: '',
+				Weight: 5
+			};
+			if (type === 'course') {
+				console.log($scope.template.CourseQuestions[questionID]);
+				$scope.template.CourseQuestions[questionID].Answers.push(newA);
+			} else if (type === 'teacher') {
+				console.log($scope.template.TeacherQuestions[questionID]);
+				$scope.template.TeacherQuestions[questionID].Answers.push(newA);
+			}
 		};
 
 		$scope.newTemplate = function() {
