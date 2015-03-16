@@ -73,3 +73,15 @@
 .noAnswerTextQuestions {
 	font-style: italic;
 }
+
+.questionBox {
+	border: solid 2px gray;
+	padding: 5px;
+	margin-top: 5px;
+}
+
+.answerBox {
+	border: solid 2px rosybrown;
+	padding: 5px;
+	margin-top: 5px;
+}
