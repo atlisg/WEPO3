@@ -1,6 +1,6 @@
 angular.module('evaluationApp').controller('evaluationsController', [
-	'$scope', '$location', '$rootScope', '$routeParams', '$http', 'evaluationResource', 'currentUser',
-	function ($scope, $location, $rootScope, $routeParams, $http, evaluationResource, currentUser) {
+	'$scope', '$location', '$rootScope', '$routeParams', '$http', 'adminResource', 'studentResource', 'currentUser','dataProcessor',
+	function ($scope, $location, $rootScope, $routeParams, $http, adminResource, studentResource, currentUser, dataProcessor) {
 		// If the user didn't go through login,
 		// redirect them to the login page.
 		if(currentUser.username === '') {
@@ -10,17 +10,49 @@ angular.module('evaluationApp').controller('evaluationsController', [
 
 		$scope.fullName = currentUser.fullName;
 		$scope.infoMessage = '';
-		$scope.evaluations = {};
+		$scope.evaluationsS = {};
+		$scope.evaluationsA = {};
 
-		evaluationResource.getEvaluations().success(function(data) {
-			console.log(data);
-			if(data.length === 0) {
-				$scope.infoMessage = 'Engin kennslumöt, sem þú getur tekið, eru til staðar.';
-			}
-			$scope.evaluations = data;
-		}).error(function(data) {
-			// TODO: Error handling for the evaluations list.
-		});
+		$scope.role = currentUser.role;
+
+		if($scope.role === 'admin') {
+			adminResource.getEvaluations().success(function(data) {
+				console.log(data);
+				if(data.length === 0) {
+					$scope.infoMessage = 'Engin kennslumöt, sem þú getur tekið, eru til staðar.';
+				}
+				$scope.evaluationsA = data;
+				// Sort the evaluations by start date.
+				$scope.evaluationsA.sort(function(a, b){
+					if (a.StartDate > b.StartDate) {
+						return -1;
+					}
+					if (a.EndDate < b.EndDate) {
+						return 1;
+					}
+					return 0;
+				});
+
+				for (var i = 0; i < $scope.evaluationsA.length; i++) {
+					$scope.evaluationsA[i].EndDate   = dataProcessor.formatDate(data[i].EndDate);
+					$scope.evaluationsA[i].StartDate = dataProcessor.formatDate(data[i].StartDate);
+				}
+			}).error(function(data) {
+				// TODO: Error handling for the evaluations list.
+			});
+		} else {
+			studentResource.getEvaluations().success(function(data) {
+				console.log(data);
+				if(data.length === 0) {
+					$scope.infoMessage = 'Engin kennslumöt, sem þú getur tekið, eru til staðar.';
+				}
+
+				$scope.evaluationsS = data;
+			}).error(function(data) {
+				// TODO: Error handling for the evaluations list.
+			});
+		}
+
 
 		$scope.dateIsActive = function(startDate, endDate) {
 			var start = new Date(startDate);

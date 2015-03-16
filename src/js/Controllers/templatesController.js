@@ -1,6 +1,6 @@
 angular.module('evaluationApp').controller('templatesController', [
-	'$scope', '$location', '$rootScope', '$routeParams', '$http', 'evaluationResource', 'currentUser',
-	function ($scope, $location, $rootScope, $routeParams, $http, evaluationResource, currentUser) {
+	'$scope', '$location', '$rootScope', '$routeParams', '$http', 'adminResource', 'currentUser',
+	function ($scope, $location, $rootScope, $routeParams, $http, adminResource, currentUser) {
 		// If the user didn't go through login,
 		// redirect them to the login page.
 		if(currentUser.username === '') {
@@ -21,7 +21,8 @@ angular.module('evaluationApp').controller('templatesController', [
 			$location.path('/template/' + ID);
 		};
 
-		evaluationResource.getTemplates().success(function(data) {
+		adminResource.getTemplates().success(function(data) {
+
 			if (data.length === 0) {
 				$scope.infoMessage = 'Engin sniðmát eru til staðar.';
 			}

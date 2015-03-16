@@ -1,4 +1,4 @@
-angular.module('evaluationApp').factory('evaluationResource',
+angular.module('evaluationApp').factory('studentResource',
 	function ($http, SERVER_URL, currentUser) {
 
 		var factory = {};

@@ -50,3 +50,22 @@
 #login-error-message {
 	margin-top:10px;
 }
+
+.evaluationsTemplateName {
+	font-size:18px;
+}
+
+.studentEvaluationLink {
+	text-decoration: none;
+}
+
+#admin-evaluation-well {
+	padding:10px;
+}
+
+#admin-evaluation-well-dates {
+	width:200px;
+}
+
+#admin-evaluation-well-name {
+}

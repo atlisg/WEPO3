@@ -1,7 +1,7 @@
 angular.module('evaluationApp').controller('authenticationController', [
-	'$scope', '$location', '$rootScope', '$routeParams', '$http', 'evaluationResource', 'currentUser',
-	function ($scope, $location, $rootScope, $routeParams, $http, evaluationResource, currentUser) {
-		$scope.user = 'bergthor13';
+	'$scope', '$location', '$rootScope', '$routeParams', '$http', 'studentResource', 'currentUser',
+	function ($scope, $location, $rootScope, $routeParams, $http, studentResource, currentUser) {
+		$scope.user = 'admin';
 		$scope.pass = '123456';
 		$scope.errorMessage = '';
 		$scope.warningMessage = '';
@@ -13,7 +13,7 @@ angular.module('evaluationApp').controller('authenticationController', [
 				                pass: $scope.pass };
 
 			if ($scope.loginForm.$valid) {
-				evaluationResource.loginUser(loginObject).success(function(data) {
+				studentResource.loginUser(loginObject).success(function(data) {
 					// Put in the data for the user that logged in.
 					$scope.getUserData(data);
 					$rootScope.$broadcast('userLoggedIn');
@@ -23,7 +23,7 @@ angular.module('evaluationApp').controller('authenticationController', [
 				});
 			}
 
-			evaluationResource.loginUser(loginObject).success(function(data) {
+			studentResource.loginUser(loginObject).success(function(data) {
 				// Put in the data for the user that logged in.
 				console.log(currentUser.role);
 				$scope.getUserData(data);
