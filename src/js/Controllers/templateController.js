@@ -9,7 +9,7 @@ angular.module('evaluationApp').controller('templateController', [
 		$scope.template.IntroTextEN      = '';
 		$scope.template.CourseQuestions  = [];
 		$scope.template.TeacherQuestions = [];
-		if ($routeParams.ID !== null) {
+		if ($routeParams.ID !== undefined) {
 			console.log("fetching info for " + $routeParams.ID);
 			adminResource.getTemplate($routeParams.ID).success(function(data) {
 				$scope.template.ID               = data.ID;
@@ -21,7 +21,7 @@ angular.module('evaluationApp').controller('templateController', [
 				$scope.template.TeacherQuestions = data.TeacherQuestions;
 			});
 		}
-		
+
 		$scope.addQuestion = function() {
 			var newQ = {
 				ID: 0,
