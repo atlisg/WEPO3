@@ -16,13 +16,7 @@ angular.module('evaluationApp').controller('templatesController', [
 			$location.path('/template');
 		};
 
-		$scope.editTemplate = function(ID) {
-			console.log(ID);
-			$location.path('/template/' + ID);
-		};
-
 		adminResource.getTemplates().success(function(data) {
-
 			if (data.length === 0) {
 				$scope.infoMessage = 'Engin sniðmát eru til staðar.';
 			}

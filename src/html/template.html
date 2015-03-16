@@ -12,21 +12,73 @@
 		<label for="templateIntroEN" class="control-label">Kynningartexti sniðmáts á ensku</label>
 		<textarea class="form-control" id="templateIntroEN" name="templateIntroEN" ng-model="template.IntroTextEN" required><textarea/>
 
-		<h4>Course Questions</h4>
-		<div ng-repeat="question in CourseQuestions">
-			<label for="questionText" class="control-label">Texti spurningar á íslensku</label>
-			<textarea class="form-control" id="questionText" name="questionText" ng-model="Text" placeholder="{{cqstns.text}}"></textarea>/> - 
-			<label for="questionTextEN" class="control-label">Texti spurningar á ensku</label>
-			<textarea class="form-control" id="questionTextEN" name="questionTextEN" ng-model="qstnTextEN" placeholder="{{cqstns.textEN}}"></textarea>/> - 
-			<label for="type">Tegund spurningar</label> 
-			<input type="radio" name="type" ng-repeat="option in options"/> {{option}}
-			<button type="button" class="btn btn-primary" ng-click="addChoice()">Bæta við svarmöguleika</button>
+		<div class="col-md-6">
+			<h4>Námskeiðsspurningar</h4>
+			<div ng-repeat="question in template.CourseQuestions">
+				<label for="questionText" class="control-label">Texti spurningar á íslensku</label>
+				<textarea class="form-control" id="questionText" name="questionText" ng-model="question.Text" placeholder="{{question.Text}}"></textarea>
+				<label for="questionTextEN" class="control-label">Texti spurningar á ensku</label>
+				<textarea class="form-control" id="questionTextEN" name="questionTextEN" ng-model="question.TextEN" placeholder="{{question.textEN}}"></textarea>
+				<label for="URL" class="control-label">Mynd (URL)</label>
+				<input type="text" class="form-control" id="URL" name="URL" ng-model="question.ImageURL"></input>
+				<label for="type">Tegund spurningar</label> 
+				<div ng-repeat="option in options">
+					<input type="radio" value="{{option}}" name="type" ng-model="question.Type"> {{option}}
+				</div>
+				
+				<div ng-show="question.Type !== 'skrifleg'" ng-repeat="answer in question.Answers">
+					<label for="answerText" class="control-label">Svarmöguleiki á íslensku</label>
+					<textarea class="form-control" id="answerText" name="answerText" ng-model="answer.Text"></textarea>
+					<label for="answerTextEN" class="control-label">Svarmöguleiki á ensku</label>
+					<textarea class="form-control" id="answerTextEN" name="answerTextEN" ng-model="answer.TextEN"></textarea>
+					<label for="answerURL" class="control-label">Mynd (URL)</label>
+					<input type="text" class="form-control" id="answerURL" name="answerURL" ng-model="answer.ImageURL"></input>
+					<label for="answerWeight" class="control-label">Vægi</label>
+					<select name="answerWeight" ng-model="answer.Weight">
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+					</select>
+				</div>
+				<button ng-show="question.Type !== 'skrifleg'" type="button" class="btn btn-secondary" ng-click="addChoice('course', question.ID)">+</button>
+			</div>
+			<button type="button" class="btn btn-primary" ng-click="addQuestion('course')">Bæta við spurningu</button>
 		</div>
-
-		<button type="button" class="btn btn-primary" ng-click="addQuestion()">Bæta við spurningu</button>
-
-		<h4>Teacher Questions</h4>
-
-		<button type="button" class="btn btn-primary" ng-click="newTemplate()">Bæta við spurningu</button>
+		<div class="col-md-6">
+			<h4>Kennaraspurningar</h4>
+			<div ng-repeat="question in template.TeacherQuestions">
+				<label for="questionText" class="control-label">Texti spurningar á íslensku</label>
+				<textarea class="form-control" id="questionText" name="questionText" ng-model="question.Text" placeholder="{{question.Text}}"></textarea>
+				<label for="questionTextEN" class="control-label">Texti spurningar á ensku</label>
+				<textarea class="form-control" id="questionTextEN" name="questionTextEN" ng-model="question.TextEN" placeholder="{{question.textEN}}"></textarea>
+				<label for="URL" class="control-label">Mynd (URL)</label>
+				<input type="text" class="form-control" id="URL" name="URL" ng-model="question.ImageURL"></input>
+				<label for="type">Tegund spurningar</label> 
+				<div ng-repeat="option in options">
+					<input type="radio" value="{{option}}" name="type" ng-model="question.Type"> {{option}}
+				</div>
+				
+				<div ng-show="question.Type !== 'skrifleg'" ng-repeat="answer in question.Answers">
+					<label for="answerText" class="control-label">Svarmöguleiki á íslensku</label>
+					<textarea class="form-control" id="answerText" name="answerText" ng-model="answer.Text"></textarea>
+					<label for="answerTextEN" class="control-label">Svarmöguleiki á ensku</label>
+					<textarea class="form-control" id="answerTextEN" name="answerTextEN" ng-model="answer.TextEN"></textarea>
+					<label for="answerURL" class="control-label">Mynd (URL)</label>
+					<input type="text" class="form-control" id="answerURL" name="answerURL" ng-model="answer.ImageURL"></input>
+					<label for="answerWeight" class="control-label">Vægi</label>
+					<select name="answerWeight" ng-model="answer.Weight">
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+					</select>
+				</div>
+				<button ng-show="question.Type !== 'skrifleg'" type="button" class="btn btn-secondary" ng-click="addChoice('teacher', question.ID)">+</button>
+			</div>
+			<button type="button" class="btn btn-primary" ng-click="addQuestion('teacher')">Bæta við spurningu</button>
+		</div>
 	</form>
 </div>
