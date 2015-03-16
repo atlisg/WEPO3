@@ -1,1 +1,11 @@
-<h2>Niðurstöður fyrir {{evaluation.title}}</h2>
+<h2>Niðurstöður fyrir {{evaluation.TemplateTitle}}</h2>
+<div class="class-results" ng-repeat="course in evaluation.Courses">
+	<h3>{{course.CourseID}}</h3>
+
+	<div class="list-group col-md-6" ng-repeat="tquest in course.textQuestions">
+		<a href="" class="list-group-item disabled">
+			{{tquest.Text}}
+		</a>
+		<a href="" class="list-group-item" ng-repeat="tResult in tquest.TextResults track by $index" ng-if="tResult !== ''">{{tResult}}</a>
+	</div>
+</div>

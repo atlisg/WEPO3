@@ -17,7 +17,6 @@ angular.module('evaluationApp').controller('evaluationsController', [
 
 		if($scope.role === 'admin') {
 			adminResource.getEvaluations().success(function(data) {
-				console.log(data);
 				if(data.length === 0) {
 					$scope.infoMessage = 'Engin kennslumöt, sem þú getur tekið, eru til staðar.';
 				}
@@ -27,7 +26,7 @@ angular.module('evaluationApp').controller('evaluationsController', [
 					if (a.StartDate > b.StartDate) {
 						return -1;
 					}
-					if (a.EndDate < b.EndDate) {
+					if (a.StartDate < b.StartDate) {
 						return 1;
 					}
 					return 0;
@@ -42,7 +41,6 @@ angular.module('evaluationApp').controller('evaluationsController', [
 			});
 		} else {
 			studentResource.getEvaluations().success(function(data) {
-				console.log(data);
 				if(data.length === 0) {
 					$scope.infoMessage = 'Engin kennslumöt, sem þú getur tekið, eru til staðar.';
 				}

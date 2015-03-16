@@ -17,17 +17,19 @@
 </div>
 
 <div id="admin-evaluation-well" class="well" ng-repeat="evaluation in evaluationsA" ng-show="role === 'admin'">
-	<div class="row">
-		<div id="admin-evaluation-well-name" class="col-xs-6">
-		<span class="glyphicon glyphicon-certificate" ng-show="evaluation.Status === 'new'"style="color:blue;"></span>
-		<span class="glyphicon glyphicon-certificate" ng-show="evaluation.Status === 'open'" style="color:green;"></span>
-		<span class="glyphicon glyphicon-certificate" ng-show="evaluation.Status === 'closed'" style="color:red;"></span>
-			<a href="#/evaluation/{{evaluation.ID}}">{{evaluation.TemplateTitle}}</a>
-		</div>
+	<a href="#/evaluation/{{evaluation.ID}}">
+		<div class="row">
+			<div id="admin-evaluation-well-name" class="col-xs-6">
+				<span class="glyphicon glyphicon-certificate" ng-show="evaluation.Status === 'new'"style="color:blue;"></span>
+				<span class="glyphicon glyphicon-certificate" ng-show="evaluation.Status === 'open'" style="color:green;"></span>
+				<span class="glyphicon glyphicon-certificate" ng-show="evaluation.Status === 'closed'" style="color:red;"></span>
+				{{evaluation.TemplateTitle}}
+			</div>
 
-		<div id="admin-evaluation-well-dates" class="container pull-right">
-			<small class="pull-right">Byrjar: {{evaluation.StartDate}}</small>
-			<small class="pull-right">Endar: {{evaluation.EndDate}}</small>
+			<div id="admin-evaluation-well-dates" class="container pull-right">
+				<small class="pull-right">Byrjar: {{evaluation.StartDate}}</small>
+				<small class="pull-right">Endar: {{evaluation.EndDate}}</small>
+			</div>
 		</div>
-	</div>
+	</a>
 </div>
