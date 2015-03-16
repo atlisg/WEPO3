@@ -13,7 +13,6 @@ angular.module('evaluationApp').factory('dataProcessor',
 			var year = d.getFullYear();
 			return day + '.' + mnth + '.' + year + ', ' + hour + ':' + min;
 		};
-
 		return factory;
 	}
 );

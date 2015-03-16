@@ -1,6 +1,6 @@
 #!/bin/bash
 pkill python
-grunt jshint &&
+grunt jshint
 grunt concat &&
 grunt uglify &&
-python -m SimpleHTTPServer 8000 
+python -m SimpleHTTPServer 8000

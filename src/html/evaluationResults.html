@@ -1,11 +1,21 @@
-<h2>Niðurstöður fyrir {{evaluation.TemplateTitle}}</h2>
+<h2>Niðurstöður kennslumats <small>{{evaluation.TemplateTitle}}</small></h2>
 <div class="class-results" ng-repeat="course in evaluation.Courses">
-	<h3>{{course.CourseID}}</h3>
+	<h3>{{course.CourseName}} <small>{{course.CourseID}}</small></h3>
+<hr>
+	<canvas id="pie" class="chart chart-pie" data="graphdata" labels="graphlabels"></canvas>
+	<div class="list-group col-md-6" ng-repeat="oquest in course.otherQuestions">
+		<a href="" class="list-group-item disabled">
+			{{oquest.Text}}<span ng-if="oquest.TeacherSSN != undefined"> - {{oquest.TeacherSSN}}</span>
+		</a>
+		<div href="" class="list-group-item noAnswerTextQuestions" ng-if="tquest.TextResults.length === 0">Enginn hefur svarað þessari spurningu.</div>
+		<canvas id="{{course.otherQuestions.QuestionID}}Chart" class="chart chart-pie" data="data" width="400" height="400"></canvas>
+	</div>
 
 	<div class="list-group col-md-6" ng-repeat="tquest in course.textQuestions">
 		<a href="" class="list-group-item disabled">
-			{{tquest.Text}}
+			{{tquest.Text}}<span ng-if="tquest.TeacherSSN != undefined"> - {{tquest.TeacherSSN}}</span>
 		</a>
-		<a href="" class="list-group-item" ng-repeat="tResult in tquest.TextResults track by $index" ng-if="tResult !== ''">{{tResult}}</a>
+		<div href="" class="list-group-item" ng-repeat="tResult in tquest.TextResults track by $index" ng-if="tResult != undefined">{{tResult}}</div>
+		<div href="" class="list-group-item noAnswerTextQuestions" ng-if="tquest.TextResults.length === 0">Enginn hefur svarað þessari spurningu.</div>
 	</div>
 </div>
