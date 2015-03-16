@@ -1,6 +1,6 @@
 angular.module('evaluationApp').controller('templateController', [
-	'$scope', '$location', '$rootScope', '$routeParams', '$http', 'evaluationResource', 'currentUser',
-	function ($scope, $location, $rootScope, $routeParams, $http, evaluationResource, currentUser) {
+	'$scope', '$location', '$rootScope', '$routeParams', '$http', 'adminResource', 'currentUser',
+	function ($scope, $location, $rootScope, $routeParams, $http, adminResource, currentUser) {
 		$scope.template                  = {};
 		$scope.template.ID               = $routeParams.ID;
 		$scope.template.Title            = '';
@@ -11,7 +11,7 @@ angular.module('evaluationApp').controller('templateController', [
 		$scope.template.TeacherQuestions = [];
 		if ($routeParams.ID !== null) {
 			console.log("fetching info for " + $routeParams.ID);
-			evaluationResource.getTemplate($routeParams.ID).success(function(data) {
+			adminResource.getTemplate($routeParams.ID).success(function(data) {
 				$scope.template.ID               = data.ID;
 				$scope.template.Title            = data.Title;
 				$scope.template.TitleEN          = data.TitleEN;
@@ -37,7 +37,7 @@ angular.module('evaluationApp').controller('templateController', [
 		};
 
 		$scope.newTemplate = function() {
-			evaluationResource.createTemplate($scope.template);
+			adminResource.createTemplate($scope.template);
 		};
 	}
 ]);
