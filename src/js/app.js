@@ -1,4 +1,4 @@
-angular.module('evaluationApp', ['ngRoute']);
+angular.module('evaluationApp', ['ngRoute', 'chart.js']);
 
 angular.module('evaluationApp').config(['$routeProvider',
 	function ($routeProvider) {

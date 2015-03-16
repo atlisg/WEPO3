@@ -13,7 +13,6 @@ angular.module('evaluationApp').controller('evaluationResultsController', [
 		$scope.evaluation.courses = [];
 		$scope.questions = {};
 		adminResource.getEvaluationResults($scope.evalID).success(function(data) {
-			console.log(data);
 			$scope.evaluation = data;
 			// Get all of the text questions up
 			for (var i = 0; i < $scope.evaluation.Courses.length; i++) {
@@ -26,6 +25,9 @@ angular.module('evaluationApp').controller('evaluationResultsController', [
 						$scope.evaluation.Courses[i].otherQuestions.push($scope.evaluation.Courses[i].Questions[j]);
 					}
 				}
+				// for (var i = 0; i < $scope.evaluation..length; i++) {
+				// 	$scope.evaluation.[i]
+				// };
 			}
 
 			console.log("SCOPE.EVAL");

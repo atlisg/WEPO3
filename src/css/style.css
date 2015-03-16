@@ -69,3 +69,7 @@
 
 #admin-evaluation-well-name {
 }
+
+.noAnswerTextQuestions {
+	font-style: italic;
+}
