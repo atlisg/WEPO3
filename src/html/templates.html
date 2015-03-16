@@ -1,13 +1,16 @@
 <p>Velkomin(n) {{fullName}}.</p>
 
-<button type="button" class="btn btn-primary" ng-click="createTemplate()">New Template</button>
+<button type="button" class="btn btn-primary" ng-click="createTemplate()">Nýtt sniðmát</button>
 
 <div class="alert alert-info" ng-cloak ng-show="infoMessage != ''">
 	<span class="glyphicon glyphicon-info-sign"></span>    {{infoMessage}}
 </div>
 
-<div ng-repeat="template in templates">
-	<a href="#/template/{{template.ID}}">{{template.ID}}</a> -
-	{{template.Title}} - 
-	{{template.TitleEN}}
+<div class="well" ng-repeat="template in templates">
+	<div class="row">
+		<span> {{template.ID}} {{template.Title}} ({{template.TitleEN}})</span>
+		<p>Byrjunardagsetning: <input type="text" id="beginDatepicker"></p>
+		<p>Endadagsetning: <input type="text" id="endDatepicker"></p>
+		<button type="button" class="pull-right btn btn-primary" ng-click="makeEvaluation('{{template.ID}}')">Búa til kennslumat</button>
+	</div>
 </div>

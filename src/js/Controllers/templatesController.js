@@ -16,6 +16,19 @@ angular.module('evaluationApp').controller('templatesController', [
 			$location.path('/template');
 		};
 
+		$scope.makeEvaluation = function() {
+
+		};
+
+		var startDate = $(function() {
+    		$( "#beginDatepicker" ).datepicker();
+  		});
+  		var endDate = $(function() {
+    		$( "#endDatepicker" ).datepicker();
+  		});
+  		console.log(startDate);
+  		console.log(endDate);
+
 		adminResource.getTemplates().success(function(data) {
 			if (data.length === 0) {
 				$scope.infoMessage = 'Engin sniðmát eru til staðar.';
