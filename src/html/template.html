@@ -14,7 +14,7 @@
 
 		<div class="col-md-6">
 			<h4>Námskeiðsspurningar</h4>
-			<div ng-repeat="question in template.CourseQuestions">
+			<div ng-repeat="question in template.CourseQuestions" class="questionBox">
 				<label for="questionText" class="control-label">Texti spurningar á íslensku</label>
 				<textarea class="form-control" id="questionText" name="questionText" ng-model="question.Text" placeholder="{{question.Text}}"></textarea>
 				<label for="questionTextEN" class="control-label">Texti spurningar á ensku</label>
@@ -26,7 +26,7 @@
 					<input type="radio" value="{{option}}" name="type" ng-model="question.Type"> {{option}}
 				</div>
 				
-				<div ng-show="question.Type !== 'skrifleg'" ng-repeat="answer in question.Answers">
+				<div ng-show="question.Type !== 'skrifleg'" ng-repeat="answer in question.Answers" class="answerBox">
 					<label for="answerText" class="control-label">Svarmöguleiki á íslensku</label>
 					<textarea class="form-control" id="answerText" name="answerText" ng-model="answer.Text"></textarea>
 					<label for="answerTextEN" class="control-label">Svarmöguleiki á ensku</label>
@@ -48,7 +48,7 @@
 		</div>
 		<div class="col-md-6">
 			<h4>Kennaraspurningar</h4>
-			<div ng-repeat="question in template.TeacherQuestions">
+			<div ng-repeat="question in template.TeacherQuestions" class="questionBox">
 				<label for="questionText" class="control-label">Texti spurningar á íslensku</label>
 				<textarea class="form-control" id="questionText" name="questionText" ng-model="question.Text" placeholder="{{question.Text}}"></textarea>
 				<label for="questionTextEN" class="control-label">Texti spurningar á ensku</label>
@@ -60,7 +60,7 @@
 					<input type="radio" value="{{option}}" name="type" ng-model="question.Type"> {{option}}
 				</div>
 				
-				<div ng-show="question.Type !== 'skrifleg'" ng-repeat="answer in question.Answers">
+				<div ng-show="question.Type !== 'skrifleg'" ng-repeat="answer in question.Answers" class="answerBox">
 					<label for="answerText" class="control-label">Svarmöguleiki á íslensku</label>
 					<textarea class="form-control" id="answerText" name="answerText" ng-model="answer.Text"></textarea>
 					<label for="answerTextEN" class="control-label">Svarmöguleiki á ensku</label>
