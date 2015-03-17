@@ -10,6 +10,7 @@ angular.module('evaluationApp').controller('templateController', [
 		$scope.template.CourseQuestions  = [];
 		$scope.template.TeacherQuestions = [];
 		$scope.answerID					 = 0;
+		$scope.questionID				 = 0;
 		if ($routeParams.ID !== undefined) {
 			console.log("fetching info for " + $routeParams.ID);
 			adminResource.getTemplate($routeParams.ID).success(function(data) {
@@ -26,7 +27,7 @@ angular.module('evaluationApp').controller('templateController', [
 
 		$scope.addQuestion = function(type) {
 			var newQ = {
-				ID: 0,
+				ID: $scope.questionID++,
 				Text: '',
 				TextEN: '',
 				ImageURL: '',
@@ -40,19 +41,33 @@ angular.module('evaluationApp').controller('templateController', [
 				}]
 			};
 			if (type === 'course') {
-				if ($scope.template.CourseQuestions.length !== 0) {
-					newQ.ID = $scope.template.CourseQuestions[$scope.template.CourseQuestions.length - 1].ID + 1;
-				}
 				$scope.template.CourseQuestions.push(newQ);
 			} else if (type === 'teacher') {
-				if ($scope.template.TeacherQuestions.length !== 0) {
-					newQ.ID = $scope.template.TeacherQuestions[$scope.template.TeacherQuestions.length - 1].ID + 1;
-				}
 				$scope.template.TeacherQuestions.push(newQ);
 			}
 		};
 
-		$scope.addChoice = function (type, questionID) {
+		$scope.removeQuestion = function(ID, type) {
+			if (type === 'course') {
+				// find the element in the array
+				for (var i = $scope.template.CourseQuestions.length - 1; i >= 0; i--) {
+					if ($scope.template.CourseQuestions[i].ID === ID) {
+						$scope.template.CourseQuestions.splice(i, 1);
+						break;
+					}
+				}
+			} else if (type === 'teacher') {
+				// find the element in the array
+				for (var j = $scope.template.TeacherQuestions.length - 1; j >= 0; j--) {
+					if ($scope.template.TeacherQuestions[j].ID === ID) {
+						$scope.template.TeacherQuestions.splice(j, 1);
+						break;
+					}
+				}
+			}
+		};
+
+		$scope.addChoice = function(question) {
 			var newA = {
 				ID: $scope.answerID++,
 				Text: '',
@@ -60,17 +75,22 @@ angular.module('evaluationApp').controller('templateController', [
 				ImageURL: '',
 				Weight: 5
 			};
-			if (type === 'course') {
-				console.log($scope.template.CourseQuestions[questionID]);
-				$scope.template.CourseQuestions[questionID].Answers.push(newA);
-			} else if (type === 'teacher') {
-				console.log($scope.template.TeacherQuestions[questionID]);
-				$scope.template.TeacherQuestions[questionID].Answers.push(newA);
+			question.Answers.push(newA);
+		};
+
+		$scope.removeChoice = function(ID, question) {
+			// find the element in the array
+			for (var k = question.Answers.length - 1; k >= 0; k--) {
+				if (question.Answers[k].ID === ID) {
+					question.Answers.splice(k, 1);
+					break;
+				}
 			}
 		};
 
-		$scope.newTemplate = function() {
+		$scope.saveTemplate = function() {
 			adminResource.createTemplate($scope.template);
+			$location.path('/templates');
 		};
 	}
 ]);
