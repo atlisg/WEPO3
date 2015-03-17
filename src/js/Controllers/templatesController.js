@@ -11,23 +11,27 @@ angular.module('evaluationApp').controller('templatesController', [
 		$scope.templates = {};
 		$scope.fullName = currentUser.fullName;
 		$scope.infoMessage = '';
+		$scope.openDate = '';
+		$scope.closeDate = '';
 
 		$scope.createTemplate = function() {
 			$location.path('/template');
 		};
 
-		$scope.makeEvaluation = function() {
-
+		$scope.makeEvaluation = function(id, startDate, endDate) {
+			var start = new Date(startDate).toISOString();
+			var end = new Date(endDate).toISOString();
+			var converter = {
+				TemplateID: id,
+				StartDate: start,
+				EndDate: end
+			};
+			adminResource.convertTemplate(converter).success(function(data) {
+				console.log("success!");
+			}).error(function(data) {
+				console.log("error...");
+			});
 		};
-
-		var startDate = $(function() {
-    		$( "#beginDatepicker" ).datepicker();
-  		});
-  		var endDate = $(function() {
-    		$( "#endDatepicker" ).datepicker();
-  		});
-  		console.log(startDate);
-  		console.log(endDate);
 
 		adminResource.getTemplates().success(function(data) {
 			if (data.length === 0) {
