@@ -25,12 +25,14 @@ angular.module('evaluationApp').controller('evaluationResultsController', [
 				$scope.teachers[i].textQ  = [];
 				var j;
 				for (j = 0; j < currentCourse.teacherOtherQuestions.length; j++) {
-					if(currentCourse.teacherOtherQuestions[j].TeacherSSN === $scope.teachers[i].SSN)
+					if(currentCourse.teacherOtherQuestions[j].TeacherSSN === $scope.teachers[i].SSN) {
 						$scope.teachers[i].otherQ.push(currentCourse.teacherOtherQuestions[j]);
+					}
 				}
 				for (j = 0; j < currentCourse.teacherTextQuestions.length; j++) {
-					if(currentCourse.teacherTextQuestions[j].TeacherSSN === $scope.teachers[i].SSN)
+					if(currentCourse.teacherTextQuestions[j].TeacherSSN === $scope.teachers[i].SSN) {
 						$scope.teachers[i].textQ.push(currentCourse.teacherTextQuestions[j]);
+					}
 				}
 			}
 		};
@@ -38,7 +40,7 @@ angular.module('evaluationApp').controller('evaluationResultsController', [
 		adminResource.getEvaluationResults($scope.evalID).success(function(data) {
 			$scope.evaluation = data;
 			if(data.Courses.length === 0) {
-				$scope.infoMessage = "Því miður hefur enginn svarað þessu kennslumati. Vinsamlega reynið aftur síðar."
+				$scope.infoMessage = "Því miður hefur enginn svarað þessu kennslumati. Vinsamlega reynið aftur síðar.";
 			}
 			var courses = $scope.evaluation.Courses;
 			// Get all of the text questions up
@@ -67,7 +69,7 @@ angular.module('evaluationApp').controller('evaluationResultsController', [
 
 				$scope.populateGraph(courses[i].courseOtherQuestions);
 				$scope.populateGraph(courses[i].teacherOtherQuestions);
-				$scope.evaluation.Courses = courses;
+				//$scope.evaluation.Courses = courses;
 
 				adminResource.getTeachersForCourse(courses[i].CourseID, courses[i].Semester).success($scope.getTeachers);
 
