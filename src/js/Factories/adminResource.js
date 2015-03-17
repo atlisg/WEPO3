@@ -37,6 +37,11 @@ angular.module('evaluationApp').factory('adminResource',
 			return $http.post(SERVER_URL + 'evaluationtemplates', template);
 		};
 
+		factory.getTeachersForCourse = function(course, semester) {
+			$http.defaults.headers.common.Authorization = "Basic " + currentUser.token;
+			return $http.get(SERVER_URL + 'courses/' + course + '/' + semester + '/teachers');
+		};
+
 		return factory;
 	}
 );
