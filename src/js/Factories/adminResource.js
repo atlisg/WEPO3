@@ -40,7 +40,8 @@ angular.module('evaluationApp').factory('adminResource',
 		factory.convertTemplate = function(converter) {
 			$http.defaults.headers.common.Authorization = "Basic " + currentUser.token;
 			return $http.post(SERVER_URL + 'evaluations', converter);
-
+		};
+		
 		factory.getTeachersForCourse = function(course, semester) {
 			$http.defaults.headers.common.Authorization = "Basic " + currentUser.token;
 			return $http.get(SERVER_URL + 'courses/' + course + '/' + semester + '/teachers');
