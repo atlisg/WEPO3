@@ -99,3 +99,29 @@
 .green {
 	background-color: green;
 }
+
+.removeQstnBtn {
+	color: white;
+	background-color: red;
+}
+
+.removeChseBtn {
+	color: white;
+	background-color: orange;
+}
+
+.evaluation-teacher-image {
+	text-align:left;
+}
+
+.answerEvaluationTeacherName {
+	text-align: left;
+}
+
+.answerEvaluationTeacherName img {
+	margin-right:15px;
+}
+
+textarea {
+   resize:none;
+}

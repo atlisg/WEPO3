@@ -1,11 +1,11 @@
 {{question.Text}}
 <div ng-show="question.Type === 'text'">
-	<textarea class="form-control"></textarea>
+	<textarea rows="7"class="form-control"></textarea>
 </div>
 <div ng-show="question.Type === 'single'" ng-repeat="radioOption in question.Answers">
 	<div class="radio">
 		<label>
-			<input type="radio" name="{{question.ID}}">
+			<input type="radio" name="{{question.ID}}{{teacher.SSN}}">
 			{{radioOption.Text}}
 		</label>
 	</div>
@@ -14,9 +14,10 @@
 	<div ng-repeat="checkOption in question.Answers">
 		<div class="checkbox">
 			<label>
-				<input type="checkbox" value="">
+				<input type="checkbox" value="{{question.ID}}{{teacher.SSN}}">
 				{{checkOption.Text}}
 			</label>
 		</div>
 	</div>
 </div>
+<hr/>
