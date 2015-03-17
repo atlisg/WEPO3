@@ -10,6 +10,7 @@ angular.module('evaluationApp').controller('evaluationController', [
 		$scope.evalID     = $routeParams.ID;
 		$scope.courseID   = $routeParams.courseID;
 		$scope.semesterID = $routeParams.semesterID;
+		$scope.teachers = [];
 
 		$scope.evaluation = {};
 
@@ -21,6 +22,10 @@ angular.module('evaluationApp').controller('evaluationController', [
 			$scope.evaluation.courseQ  = data.CourseQuestions;
 			$scope.evaluation.teacherQ = data.TeacherQuestions;
 			console.log($scope.evaluation);
+		});
+		studentResource.getTeachersForCourse($scope.courseID).success(function(data) {
+			console.log(data);
+			$scope.teachers = data;
 		});
 	}
 ]);
