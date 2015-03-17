@@ -1,21 +1,64 @@
 <h2>Niðurstöður kennslumats <small>{{evaluation.TemplateTitle}}</small></h2>
+<div class="alert alert-info" ng-cloak ng-show="infoMessage != ''">
+	<span class="glyphicon glyphicon-info-sign"></span>    {{infoMessage}}
+</div>
+
+<!-- Iterate through every course -->
 <div class="class-results" ng-repeat="course in evaluation.Courses">
 	<h3>{{course.CourseName}} <small>{{course.CourseID}}</small></h3>
-<hr>
-	<canvas id="pie" class="chart chart-pie" data="graphdata" labels="graphlabels"></canvas>
-	<div class="list-group col-md-6" ng-repeat="oquest in course.otherQuestions">
-		<a href="" class="list-group-item disabled">
-			{{oquest.Text}}<span ng-if="oquest.TeacherSSN != undefined"> - {{oquest.TeacherSSN}}</span>
-		</a>
-		<div href="" class="list-group-item noAnswerTextQuestions" ng-if="tquest.TextResults.length === 0">Enginn hefur svarað þessari spurningu.</div>
-		<canvas id="{{course.otherQuestions.QuestionID}}Chart" class="chart chart-pie" data="data" width="400" height="400"></canvas>
+	<hr>
+	<div class="panel panel-default">
+		<div class="panel-heading"><h3 class="panel-title">Áfangaspurningar</h3><span ng-if="oquest.TeacherSSN != undefined"></span></div>
+		<div class="panel-body">
+		<!-- Iterate through every question that is not a text question -->
+			<div class="list-group col-md-3" ng-repeat="oquest in course.courseOtherQuestions">
+				<div class="panel panel-default">
+					<div class="panel-heading">{{oquest.Text}}</div>
+					<div class="panel-body">
+						<canvas legend="true" options="{animationEasing : 'easeOutQuart'}" id="bla" class="chart chart-pie" data="graphData[oquest.uniqueID]" labels="graphLabels[oquest.uniqueID]"height="325"></canvas>
+					</div>
+				</div>
+			</div>
+			<!-- Iterate through every question that is a text question -->
+			<div class="list-group col-md-6" ng-repeat="tquest in course.courseTextQuestions">
+				<!-- Display the title -->
+				<a href="" class="list-group-item disabled">{{tquest.Text}}</a>
+					<!-- Iterate through all of the course's questions answers.-->
+					<!-- If the text result is empty do not display it.-->
+				<div href="" class="list-group-item" ng-repeat="tResult in tquest.TextResults track by $index" ng-if="tResult != undefined">{{tResult}}</div>
+				<div href="" class="list-group-item noAnswerTextQuestions" ng-if="tquest.TextResults.length === 0">Enginn hefur svarað þessari spurningu.</div>
+			</div>
+		</div>
 	</div>
 
-	<div class="list-group col-md-6" ng-repeat="tquest in course.textQuestions">
-		<a href="" class="list-group-item disabled">
-			{{tquest.Text}}<span ng-if="tquest.TeacherSSN != undefined"> - {{tquest.TeacherSSN}}</span>
-		</a>
-		<div href="" class="list-group-item" ng-repeat="tResult in tquest.TextResults track by $index" ng-if="tResult != undefined">{{tResult}}</div>
-		<div href="" class="list-group-item noAnswerTextQuestions" ng-if="tquest.TextResults.length === 0">Enginn hefur svarað þessari spurningu.</div>
+
+	<div class="panel panel-default">
+		<div class="panel-heading"><h3 class="panel-title">Kennaraspurningar</h3><span ng-if="oquest.TeacherSSN != undefined"></span></div>
+		<div class="panel-body">
+		<!-- Iterate through all of the teachers -->
+			<div ng-repeat="teacher in teachers">
+				<h4>{{teacher.FullName}}</h4>
+				<!-- Iterate through all of the teachers' questions that are not text -->
+				<div class="list-group col-md-3" ng-repeat="oquest in teacher.otherQ">
+					<div class="panel panel-default">
+					<div class="panel-heading">{{oquest.Text}}</div>
+						<div class="panel-body">
+							<canvas legend="true" options="{animationEasing : 'easeOutQuart'}" id="bla" class="chart chart-pie" data="graphData[oquest.uniqueID]" labels="graphLabels[oquest.uniqueID]"height="325"></canvas>
+						</div>
+					</div>
+				</div>
+				<!-- Iterate through all of the teachers' text questions -->
+				<div class="list-group col-md-6" ng-repeat="tquest in teacher.textQ">
+					<a href="" class="list-group-item disabled">
+						{{tquest.Text}}
+					</a>
+					<!-- Iterate through all of the teachers' questions answers -->
+					<div href="" class="list-group-item" ng-repeat="tResult in tquest.TextResults track by $index" ng-if="tResult != undefined">{{tResult}}</div>
+					<div href="" class="list-group-item noAnswerTextQuestions" ng-if="tquest.TextResults.length === 0">Enginn hefur svarað þessari spurningu.</div>
+				</div>
+				<div class="clearfix"></div>
+				<hr/>
+			</div>
+		</div>
 	</div>
 </div>
