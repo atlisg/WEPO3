@@ -22,7 +22,7 @@ angular.module('evaluationApp').controller('evaluationsController', [
 				}
 				$scope.evaluationsA = data;
 				// Sort the evaluations by start date.
-				$scope.evaluationsA.sort(function(a, b){
+				/*$scope.evaluationsA.sort(function(a, b){
 					if (a.StartDate > b.StartDate) {
 						return -1;
 					}
@@ -30,7 +30,7 @@ angular.module('evaluationApp').controller('evaluationsController', [
 						return 1;
 					}
 					return 0;
-				});
+				});*/
 
 				for (var i = 0; i < $scope.evaluationsA.length; i++) {
 					$scope.evaluationsA[i].EndDate   = dataProcessor.formatDate(data[i].EndDate);

@@ -3,7 +3,7 @@
 	<span class="glyphicon glyphicon-info-sign"></span>    {{infoMessage}}
 </div>
 
-<div class="well well-sm" ng-repeat="evaluation in evaluationsS" ng-show="role !== 'admin'">
+<div class="well well-sm" ng-repeat="evaluation in evaluationsS | orderBy : '-ID' : reverse" ng-show="role !== 'admin'">
 	<a href="#/evaluation/{{evaluation.Semester}}/{{evaluation.CourseID}}/{{evaluation.ID}}">
 		<div class="studentEvaluationLink">
 			<span>
@@ -16,7 +16,7 @@
 	</a>
 </div>
 
-<div id="admin-evaluation-well" class="well" ng-repeat="evaluation in evaluationsA" ng-show="role === 'admin'">
+<div id="admin-evaluation-well" class="well" ng-repeat="evaluation in evaluationsA | orderBy : '-ID' : reverse" ng-show="role === 'admin'">
 	<a href="#/evaluation/{{evaluation.ID}}">
 		<div class="row">
 			<div id="admin-evaluation-well-name" class="col-xs-6">
