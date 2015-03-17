@@ -85,3 +85,17 @@
 	padding: 5px;
 	margin-top: 5px;
 }
+
+.dateBox {
+	height:30px;
+	width:150px;
+	border-radius: 5px;
+}
+
+.sidePadding {
+	padding:0px 10px;
+}
+
+.green {
+	background-color: green;
+}

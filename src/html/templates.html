@@ -6,12 +6,18 @@
 	<span class="glyphicon glyphicon-info-sign"></span>    {{infoMessage}}
 </div>
 
-<div class="well" ng-repeat="template in templates">
-	<div class="row">
-		<span> {{template.ID}} {{template.Title}} ({{template.TitleEN}})</span>
-		<p>Byrjunardagsetning: <input type="text" id="beginDatepicker"></p>
-		<p>Endadagsetning: <input type="text" id="endDatepicker"></p>
-		<button type="button" class="pull-right btn btn-primary" ng-click="pickBeginDate()">Velja byrjunardagsetningu</button>
-		<button type="button" class="pull-right btn btn-primary" ng-click="makeEvaluation('{{template.ID}}')">Búa til kennslumat</button>
+<div class="well" ng-repeat="template in templates | orderBy : '-ID' : reverse">
+	<div class="row sidePadding">
+		{{template.ID}}
+		<a href="#/template/{{template.ID}}"> {{template.Title}} ({{template.TitleEN}})</a>
+		<br>
+		<form ng-submit="makeEvaluation(template.ID, openDate, closeDate)">
+			<label for="openingDate">Opnunardags:</label>
+			<input type="date" id="openingDate" name="openingDate" class="dateBox" ng-model="openDate"></input>
+			<label for="closingDate">Lokunardags:</label>
+			<input type="date" id="closingDate" name="closingDate" class="dateBox" ng-model="closeDate"></input>
+			<button type="submit" class="btn btn-primary green">Opna kennslumat</button>
+		</form>
+		
 	</div>
 </div>

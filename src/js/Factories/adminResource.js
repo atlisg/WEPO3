@@ -37,6 +37,11 @@ angular.module('evaluationApp').factory('adminResource',
 			return $http.post(SERVER_URL + 'evaluationtemplates', template);
 		};
 
+		factory.convertTemplate = function(converter) {
+			$http.defaults.headers.common.Authorization = "Basic " + currentUser.token;
+			return $http.post(SERVER_URL + 'evaluations', converter);
+		};
+
 		return factory;
 	}
 );
