@@ -27,7 +27,7 @@ angular.module('evaluationApp').controller('templatesController', [
 			$scope.currentID = id;
 			if (start <= now) {
 				$scope.dateMessage = 'Opnunardagsetning verður að vera á morgun eða seinna.';
-				return;
+				//return;
 			}
 			if (end <= start) {
 				$scope.dateMessage = 'Lokunardagsetning verður að vera á eftir opnunardagsetningu.';

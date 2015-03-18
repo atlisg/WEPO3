@@ -13,7 +13,7 @@ angular.module('evaluationApp').controller('templateController', [
 		$scope.questionID				 = 0;
 		$scope.dateMessage               = '';
 		$scope.currentID                 = 0;
-			
+
 		if ($routeParams.ID !== undefined) {
 			adminResource.getTemplate($routeParams.ID).success(function(data) {
 				$scope.template.ID               = data.ID;
@@ -25,7 +25,7 @@ angular.module('evaluationApp').controller('templateController', [
 				$scope.template.TeacherQuestions = data.TeacherQuestions;
 			});
 		}
-		$scope.options = ['skrifleg' , 'einvals', 'fjölvals'];
+		$scope.options = ['text' , 'single', 'multiple'];
 
 		$scope.addQuestion = function(type) {
 			var newQ = {
@@ -33,7 +33,7 @@ angular.module('evaluationApp').controller('templateController', [
 				Text: '',
 				TextEN: '',
 				ImageURL: '',
-				Type: 'skrifleg',
+				Type: 'text',
 				Answers: [{
 					ID: $scope.answerID++,
 					Text: '',
@@ -42,6 +42,7 @@ angular.module('evaluationApp').controller('templateController', [
 					Weight: 5
 				}]
 			};
+			console.log(newQ);
 			if (type === 'course') {
 				$scope.template.CourseQuestions.push(newQ);
 			} else if (type === 'teacher') {
@@ -103,7 +104,7 @@ angular.module('evaluationApp').controller('templateController', [
 			$scope.currentID = id;
 			if (start <= now) {
 				$scope.dateMessage = 'Opnunardagsetning verður að vera á morgun eða seinna.';
-				return;
+				//return;
 			}
 			if (end <= start) {
 				$scope.dateMessage = 'Lokunardagsetning verður að vera á eftir opnunardagsetningu.';

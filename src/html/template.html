@@ -36,8 +36,8 @@
 				<div ng-repeat="option in options">
 					<input type="radio" value="{{option}}" name="{{question.ID}}.course" ng-model="question.Type"> {{option}}
 				</div>
-				
-				<div ng-show="question.Type !== 'skrifleg'" ng-repeat="answer in question.Answers" class="answerBox">
+
+				<div ng-show="question.Type !== 'text'" ng-repeat="answer in question.Answers" class="answerBox">
 					<label for="answerText" class="control-label">Svarmöguleiki á íslensku</label>
 					<button class="pull-right btn btn-default btn-xs removeChseBtn" ng-click="removeChoice(answer.ID, question)"><span class="glyphicon glyphicon-remove"></span></button>
 					<textarea class="form-control" id="answerText" name="answerText" ng-model="answer.Text"></textarea>
@@ -54,7 +54,7 @@
 						<option value="5">5</option>
 					</select>
 				</div>
-				<button ng-show="question.Type !== 'skrifleg'" type="button" class="btn btn-secondary" ng-click="addChoice(question)">+</button>
+				<button ng-show="question.Type !== 'text'" type="button" class="btn btn-secondary" ng-click="addChoice(question)">+</button>
 			</div>
 			<button type="button" class="btn btn-primary" ng-click="addQuestion('course')">Bæta við spurningu</button>
 		</div>
@@ -70,10 +70,10 @@
 				<input type="text" class="form-control" id="URL" name="URL" ng-model="question.ImageURL"></input>
 				<label for="type">Tegund spurningar</label>
 				<div ng-repeat="option in options">
-					<input type="radio" value="{{option}}" name="{{question.ID}}.teacher" ng-model="question.Type"> {{option}}
+					<input type="radio" ng-value="{{option}}" name="{{question.ID}}.teacher" ng-model="question.Type"> {{option}}
 				</div>
-				
-				<div ng-show="question.Type !== 'skrifleg'" ng-repeat="answer in question.Answers" class="answerBox">
+
+				<div ng-show="question.Type !== 'text'" ng-repeat="answer in question.Answers" class="answerBox">
 					<label for="answerText" class="control-label">Svarmöguleiki á íslensku</label>
 					<button class="pull-right btn btn-default btn-xs removeChseBtn" ng-click="removeChoice(answer.ID, question)"><span class="glyphicon glyphicon-remove"></span></button>
 					<textarea class="form-control" id="answerText" name="answerText" ng-model="answer.Text"></textarea>
@@ -90,7 +90,7 @@
 						<option value="5">5</option>
 					</select>
 				</div>
-				<button ng-show="question.Type !== 'skrifleg'" type="button" class="btn btn-secondary" ng-click="addChoice(question)">+</button>
+				<button ng-show="question.Type !== 'text'" type="button" class="btn btn-secondary" ng-click="addChoice(question)">+</button>
 			</div>
 			<button type="button" class="btn btn-primary" ng-click="addQuestion('teacher')">Bæta við spurningu</button>
 		</div>
