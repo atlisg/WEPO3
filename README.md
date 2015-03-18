@@ -18,3 +18,7 @@ To run the project execute the following command.
 You should now be able to open the website at the following URL
 
 [http://localhost:8000/src/html](http://localhost:8000/src/html)
+
+## Some bugs.
+* The evaluations results page shows the same teachers' questions for every course.
+ - The issue is that we get the teachers from a course from the server but we haven't got the results when we try to get the next set of teachers.
