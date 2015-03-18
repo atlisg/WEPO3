@@ -66,9 +66,9 @@ module.exports = function ( grunt ) {
       				frameworks: ['jasmine'],
       				singleRun: true,
   		    		browsers: ['Chrome'],
-  		    		reporters: ['progress'/*, 'coverage'*/],
+  		    		reporters: ['progress', 'coverage'],
   		    		preprocessors: {
-  		    			//'src/**/*.js': ['coverage']
+  		    			'src/**/*.js': ['coverage']
   		    		},
 		 			files: [
 		 				'bower_components/angular/angular.js',

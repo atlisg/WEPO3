@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for js/Controllers/evaluationsController.js</title>
+    <meta charset="utf-8">
+
+    <link rel="stylesheet" href="../../prettify.css">
+
+    <link rel="stylesheet" href="../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1>Code coverage report for <span class="entity">js/Controllers/evaluationsController.js</span></h1>
+    <h2>
+        
+        Statements: <span class="metric">3.85% <small>(1 / 26)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Branches: <span class="metric">0% <small>(0 / 10)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Functions: <span class="metric">0% <small>(0 / 6)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Lines: <span class="metric">3.85% <small>(1 / 26)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../index.html">All files</a> &#187; <a href="index.html">js/Controllers/</a> &#187; evaluationsController.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">angular.module('evaluationApp').controller('evaluationsController', [
+	'$scope', '$location', '$rootScope', '$routeParams', '$http', 'adminResource', 'studentResource', 'currentUser','dataProcessor',
+<span class="fstat-no" title="function not covered" >	function ($scope, $location, $rootScope, $routeParams, $http, adminResource, studentResource, currentUser, dataProcessor) {</span>
+		// If the user didn't go through login,
+		// redirect them to the login page.
+<span class="cstat-no" title="statement not covered" >		if(currentUser.username === '') {</span>
+<span class="cstat-no" title="statement not covered" >			$location.path('/login');</span>
+<span class="cstat-no" title="statement not covered" >			return;</span>
+		}
+&nbsp;
+<span class="cstat-no" title="statement not covered" >		$scope.fullName = currentUser.fullName;</span>
+<span class="cstat-no" title="statement not covered" >		$scope.infoMessage = '';</span>
+<span class="cstat-no" title="statement not covered" >		$scope.evaluationsS = {};</span>
+<span class="cstat-no" title="statement not covered" >		$scope.evaluationsA = {};</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >		$scope.role = currentUser.role;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >		if($scope.role === 'admin') {</span>
+<span class="cstat-no" title="statement not covered" >			adminResource.getEvaluations().success(<span class="fstat-no" title="function not covered" >function(data) {</span></span>
+<span class="cstat-no" title="statement not covered" >				if(data.length === 0) {</span>
+<span class="cstat-no" title="statement not covered" >					$scope.infoMessage = 'Engin kennslumöt, sem þú getur tekið, eru til staðar.';</span>
+				}
+<span class="cstat-no" title="statement not covered" >				$scope.evaluationsA = data;</span>
+				// Sort the evaluations by start date.
+				/*$scope.evaluationsA.sort(function(a, b){
+					if (a.StartDate &gt; b.StartDate) {
+						return -1;
+					}
+					if (a.StartDate &lt; b.StartDate) {
+						return 1;
+					}
+					return 0;
+				});*/
+&nbsp;
+<span class="cstat-no" title="statement not covered" >				for (var i = 0; i &lt; $scope.evaluationsA.length; i++) {</span>
+<span class="cstat-no" title="statement not covered" >					$scope.evaluationsA[i].EndDate   = dataProcessor.formatDate(data[i].EndDate);</span>
+<span class="cstat-no" title="statement not covered" >					$scope.evaluationsA[i].StartDate = dataProcessor.formatDate(data[i].StartDate);</span>
+				}
+			}).error(<span class="fstat-no" title="function not covered" >function(data) {</span>
+				// TODO: Error handling for the evaluations list.
+			});
+		} else {
+<span class="cstat-no" title="statement not covered" >			studentResource.getEvaluations().success(<span class="fstat-no" title="function not covered" >function(data) {</span></span>
+<span class="cstat-no" title="statement not covered" >				if(data.length === 0) {</span>
+<span class="cstat-no" title="statement not covered" >					$scope.infoMessage = 'Engin kennslumöt, sem þú getur tekið, eru til staðar.';</span>
+				}
+&nbsp;
+<span class="cstat-no" title="statement not covered" >				$scope.evaluationsS = data;</span>
+			}).error(<span class="fstat-no" title="function not covered" >function(data) {</span>
+				// TODO: Error handling for the evaluations list.
+			});
+		}
+&nbsp;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >		$scope.dateIsActive = <span class="fstat-no" title="function not covered" >function(startDate, endDate) {</span></span>
+<span class="cstat-no" title="statement not covered" >			var start = new Date(startDate);</span>
+<span class="cstat-no" title="statement not covered" >			var end = new Date(endDate);</span>
+<span class="cstat-no" title="statement not covered" >			var now = new Date(Date.now());</span>
+<span class="cstat-no" title="statement not covered" >			return start &lt; now &amp;&amp; now &lt; end;</span>
+		};
+	}
+]);</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Mar 18 2015 21:28:26 GMT+0000 (GMT)</div>
+</div>
+
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+
+<script src="../../sorter.js"></script>
+</body>
+</html>
