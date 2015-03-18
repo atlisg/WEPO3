@@ -1,12 +1,23 @@
 describe("controller: authenticationController", function() {
   // Write tests
-  var $scope, myService, $location
+  var $scope = {
+    user: 'bergthor13',
+    pass: '123456',
+    errorMessage: '',
+    warningMessage: '',
+    submitted: false
+  }, myService, $location
 
   beforeEach(module('evaluationApp'));
   beforeEach(inject(function (_$controller_, _$rootScope_, _$location_) {
     $controller = _$controller_;
     $rootScope = _$rootScope_;
     $location = _$location_;
+    myService = $controller('authenticationController', {
+      $scope: $scope,
+      $rootScope: $rootScope,
+      $location: $location
+    });
   }));
 
   it('should work', function() {
@@ -15,15 +26,13 @@ describe("controller: authenticationController", function() {
     expect(5).toBe(5);
   });
 
-  /*it('testShit', function() {
-    controller = $controller('authenticationController', {
-        $scope: $scope
-    });
+  it('testShit', function() {
     var result = $scope.testShit();
     expect(result).toBe(1992);
-  });*/
+    expect(result).not.toBe(1993);
+  });
 
-})
+});
 
 /*describe('Posts', function() {
   var rest, post;
