@@ -1,12 +1,6 @@
 angular.module('evaluationApp').controller('evaluationsController', [
 	'$scope', '$location', '$rootScope', '$routeParams', '$http', 'adminResource', 'studentResource', 'currentUser','dataProcessor',
 	function ($scope, $location, $rootScope, $routeParams, $http, adminResource, studentResource, currentUser, dataProcessor) {
-		// If the user didn't go through login,
-		// redirect them to the login page.
-		if(currentUser.username === '') {
-			$location.path('/login');
-			return;
-		}
 
 		$scope.fullName = currentUser.fullName;
 		$scope.infoMessage = '';
