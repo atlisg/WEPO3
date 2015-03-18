@@ -1,8 +1,13 @@
-/*describe("controller: authenticationController", function() {
+describe("controller: authenticationController", function() {
   // Write tests
   var $scope, myService, $location
 
   beforeEach(module('evaluationApp'));
+  beforeEach(inject(function(_$controller_, _$scope_, _$location_){
+  	// Create a new scope:
+  	$scope = _$scope_;
+    $controller = _$controller_;
+    $location = _$location_;
 
   beforeEach(inject(function($rootScope, _myService_, _$location_) {
     $scope = $rootScope.$new();
@@ -14,9 +19,9 @@
     // Do something
     // Expect something
   });
-})*/
+})
 
-describe('Posts', function() {
+/*describe('Posts', function() {
   var rest, post;
 
   beforeEach(function() {
@@ -66,5 +71,5 @@ describe('Posts', function() {
     };
     post.accept(postToAccept, fn);
     expect(fn).toHaveBeenCalled();
-  });
+  });*/
 });
