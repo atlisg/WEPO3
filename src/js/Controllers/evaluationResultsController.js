@@ -19,6 +19,22 @@ angular.module('evaluationApp').controller('evaluationResultsController', [
 		$scope.infoMessage = '';
 		$scope.getTeachers = function(data) {
 			$scope.teachers = data;
+			var currentCourse = $scope.courses[$scope.currentCourse];
+			for (var i = 0; i < $scope.teachers.length; i++) {
+				$scope.teachers[i].otherQ = [];
+				$scope.teachers[i].textQ  = [];
+				var j;
+				for (j = 0; j < currentCourse.teacherOtherQuestions.length; j++) {
+					if(currentCourse.teacherOtherQuestions[j].TeacherSSN === $scope.teachers[i].SSN) {
+						$scope.teachers[i].otherQ.push(currentCourse.teacherOtherQuestions[j]);
+					}
+				}
+				for (j = 0; j < currentCourse.teacherTextQuestions.length; j++) {
+					if(currentCourse.teacherTextQuestions[j].TeacherSSN === $scope.teachers[i].SSN) {
+						$scope.teachers[i].textQ.push(currentCourse.teacherTextQuestions[j]);
+					}
+				}
+			}
 		};
 
 		adminResource.getEvaluationResults($scope.evalID).success(function(data) {

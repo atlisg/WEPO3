@@ -1,13 +1,8 @@
 angular.module('evaluationApp').controller('evaluationController', [
 	'$scope', '$location', '$rootScope', '$routeParams', '$http', 'adminResource', 'studentResource', 'currentUser',
 	function ($scope, $location, $rootScope, $routeParams, $http, adminResource, studentResource, currentUser) {
-		// If the user didn't go through login,
-		// redirect them to the login page.
-		if(currentUser.username === '') {
-			$location.path('/login');
-			return;
-		}
-		$scope.addCheckedToModel = function(list) {
+
+/*		$scope.addCheckedToModel = function(list) {
 			for (var i = 0; i < list.length; i++) {
 				list[i].checked = true;
 			}
@@ -17,7 +12,7 @@ angular.module('evaluationApp').controller('evaluationController', [
 			for (var i = 0; i < list.length; i++) {
 				list[i].selected = null;
 			}
-		};
+		};*/
 		$scope.evalID     = $routeParams.ID;
 		$scope.courseID   = $routeParams.courseID;
 		$scope.semesterID = $routeParams.semesterID;
