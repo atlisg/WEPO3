@@ -13,28 +13,12 @@ angular.module('evaluationApp').controller('evaluationResultsController', [
 		$scope.evaluation.courses = [];
 		$scope.graphData   = {};
 		$scope.graphLabels = {};
-		$scope.teachers = [];
+		$scope.teachers = {};
 		$scope.courses = {};
 		$scope.currentCourse = '';
 		$scope.infoMessage = '';
 		$scope.getTeachers = function(data) {
 			$scope.teachers = data;
-			var currentCourse = $scope.courses[$scope.currentCourse];
-			for (var i = 0; i < $scope.teachers.length; i++) {
-				$scope.teachers[i].otherQ = [];
-				$scope.teachers[i].textQ  = [];
-				var j;
-				for (j = 0; j < currentCourse.teacherOtherQuestions.length; j++) {
-					if(currentCourse.teacherOtherQuestions[j].TeacherSSN === $scope.teachers[i].SSN) {
-						$scope.teachers[i].otherQ.push(currentCourse.teacherOtherQuestions[j]);
-					}
-				}
-				for (j = 0; j < currentCourse.teacherTextQuestions.length; j++) {
-					if(currentCourse.teacherTextQuestions[j].TeacherSSN === $scope.teachers[i].SSN) {
-						$scope.teachers[i].textQ.push(currentCourse.teacherTextQuestions[j]);
-					}
-				}
-			}
 		};
 
 		adminResource.getEvaluationResults($scope.evalID).success(function(data) {
@@ -43,41 +27,44 @@ angular.module('evaluationApp').controller('evaluationResultsController', [
 			if(data.Courses.length === 0) {
 				$scope.infoMessage = "Því miður hefur enginn svarað þessu kennslumati. Vinsamlega reynið aftur síðar.";
 			}
-			var courses = $scope.evaluation.Courses;
 			// Get all of the text questions up
-			for (var i = 0; i < courses.length; i++) {
-				courses[i].teacherTextQuestions  = [];
-				courses[i].teacherOtherQuestions = [];
-				courses[i].courseTextQuestions   = [];
-				courses[i].courseOtherQuestions  = [];
-				$scope.courses[courses[i].CourseID] = courses[i];
-				$scope.currentCourse = courses[i].CourseID;
-				for (var j = 0; j < courses[i].Questions.length; j++) {
-					if(courses[i].Questions[j].Type === 'text') {
-						if(courses[i].Questions[j].TeacherSSN === null) {
-							courses[i].courseTextQuestions.push(courses[i].Questions[j]);
+			for (var i = 0; i < $scope.evaluation.Courses.length; i++) {
+				// Add this to each course.
+				$scope.evaluation.Courses[i].teacherTextQuestions  = [];
+				$scope.evaluation.Courses[i].teacherOtherQuestions = [];
+				$scope.evaluation.Courses[i].courseTextQuestions   = [];
+				$scope.evaluation.Courses[i].courseOtherQuestions  = [];
+
+				$scope.courses[$scope.evaluation.Courses[i].CourseID] = $scope.evaluation.Courses[i];
+				$scope.currentCourse = $scope.evaluation.Courses[i].CourseID;
+				for (var j = 0; j < $scope.evaluation.Courses[i].Questions.length; j++) {
+					if($scope.evaluation.Courses[i].Questions[j].Type === 'text') {
+						if($scope.evaluation.Courses[i].Questions[j].TeacherSSN === null) {
+							$scope.evaluation.Courses[i].courseTextQuestions.push($scope.evaluation.Courses[i].Questions[j]);
 						} else {
-							courses[i].teacherTextQuestions.push(courses[i].Questions[j]);
+							$scope.evaluation.Courses[i].teacherTextQuestions.push($scope.evaluation.Courses[i].Questions[j]);
 						}
 					} else {
-						if(courses[i].Questions[j].TeacherSSN === null) {
-							courses[i].courseOtherQuestions.push(courses[i].Questions[j]);
+						if($scope.evaluation.Courses[i].Questions[j].TeacherSSN === null) {
+							$scope.evaluation.Courses[i].courseOtherQuestions.push($scope.evaluation.Courses[i].Questions[j]);
 						} else {
-							courses[i].teacherOtherQuestions.push(courses[i].Questions[j]);
+							$scope.evaluation.Courses[i].teacherOtherQuestions.push($scope.evaluation.Courses[i].Questions[j]);
 						}
 					}
 				}
-
-				$scope.populateGraph(courses[i].courseOtherQuestions);
-				$scope.populateGraph(courses[i].teacherOtherQuestions);
+				console.log($scope.graphData);
+				$scope.populateGraph($scope.evaluation.Courses[i].courseOtherQuestions);
+				$scope.populateGraph($scope.evaluation.Courses[i].teacherOtherQuestions);
 				//$scope.evaluation.Courses = courses;
 
-				adminResource.getTeachersForCourse(courses[i].CourseID, courses[i].Semester).success($scope.getTeachers);
+				adminResource.getTeachersForCourse($scope.evaluation.Courses[i].CourseID, $scope.evaluation.Courses[i].Semester).success($scope.getTeachers);
 
 			}
+			console.log($scope.graphData);
 		});
 
 $scope.populateGraph = function(list) {
+	var graphData = {};
 	var key, k;
 	for (var j = 0; j < list.length; j++) {
 		if (list[j].TeacherSSN === null) {
@@ -86,14 +73,14 @@ $scope.populateGraph = function(list) {
 			key = list[j].QuestionID + list[j].TeacherSSN;
 		}
 		list[j].uniqueID = key;
-
+		graphData[key] = [];
 		$scope.graphData  [key] = [];
 		$scope.graphLabels[key] = [];
 		for (k = 0; k < list[j].OptionsResults.length; k++) {
+			graphData[key].push(list[j].OptionsResults[k].Count);
 			$scope.graphData[key].push(list[j].OptionsResults[k].Count);
 			$scope.graphLabels[key].push(list[j].OptionsResults[k].AnswerText);
 		}
-
 	}
 };
 }]);

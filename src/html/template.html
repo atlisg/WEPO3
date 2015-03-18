@@ -70,7 +70,7 @@
 				<input type="text" class="form-control" id="URL" name="URL" ng-model="question.ImageURL"></input>
 				<label for="type">Tegund spurningar</label>
 				<div ng-repeat="option in options">
-					<input type="radio" ng-value="{{option}}" name="{{question.ID}}.teacher" ng-model="question.Type"> {{option}}
+					<input type="radio" value="{{option}}" name="{{question.ID}}.teacher" ng-model="question.Type"> {{option}}
 				</div>
 
 				<div ng-show="question.Type !== 'text'" ng-repeat="answer in question.Answers" class="answerBox">
@@ -96,3 +96,4 @@
 		</div>
 	</form>
 </div>
+<button class="btn btn-primary"ng-click="callTemplate()">callTemplate</button>
