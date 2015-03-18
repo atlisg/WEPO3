@@ -1,6 +1,8 @@
 describe('templateController', function() {
   // Write tests
-  var scope = {}, myService, $location;
+  var scope = {
+    username: 'atlisg12'
+  }, myService, $location;
 
   var mockTemplate = {};
 
@@ -13,7 +15,7 @@ describe('templateController', function() {
     myService = $controller('templateController', {
       $scope: scope,
       $rootScope: $rootScope,
-      $location: $location
+      $location: $location,
     });
   }));
 

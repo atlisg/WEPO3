@@ -31,6 +31,7 @@
     "grunt-karma": "^0.10.1",
     "karma": "^0.12.31",
     "karma-chrome-launcher": "^0.1.7",
+    "karma-coverage": "^0.2.7",
     "karma-jasmine": "^0.2.2"
   }
 }

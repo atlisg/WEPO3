@@ -1,12 +1,7 @@
 angular.module('evaluationApp').controller('templateController', [
 	'$scope', '$location', '$rootScope', '$routeParams', '$http', 'adminResource', 'currentUser',
 	function ($scope, $location, $rootScope, $routeParams, $http, adminResource, currentUser) {
-				// If the user didn't go through login,
-		// redirect them to the login page.
-		if(currentUser.username === '') {
-			$location.path('/login');
-			return;
-		}
+		
 		$scope.template                  = {};
 		$scope.template.ID               = $routeParams.ID;
 		$scope.template.Title            = '';
