@@ -1,7 +1,7 @@
 describe('authenticationController', function() {
   var $controller, $scope, $location;
 
-  beforeEach(module('evaluationApp', ['ngRoute', 'chart.js']));
+  beforeEach(module('evaluationApp'));
   beforeEach(inject(function(_$controller_, _$scope_, _$location_){
   	// Create a new scope:
   	$scope = _$scope_;
