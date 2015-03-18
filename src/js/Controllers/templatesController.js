@@ -1,12 +1,6 @@
 angular.module('evaluationApp').controller('templatesController', [
 	'$scope', '$location', '$rootScope', '$routeParams', '$http', 'adminResource', 'currentUser',
 	function ($scope, $location, $rootScope, $routeParams, $http, adminResource, currentUser) {
-		// If the user didn't go through login,
-		// redirect them to the login page.
-		if(currentUser.username === '') {
-			$location.path('/login');
-			return;
-		}
 
 		$scope.templates = {};
 		$scope.fullName = currentUser.fullName;
@@ -25,8 +19,8 @@ angular.module('evaluationApp').controller('templatesController', [
 			var now = new Date().toISOString();
 			$scope.dateMessage = '';
 			$scope.currentID = id;
-			if (start < now) {
-				$scope.dateMessage = 'Opnunardagsetning verður að vera í dag eða seinna.';
+			if (start <= now) {
+				$scope.dateMessage = 'Opnunardagsetning verður að vera á morgun eða seinna.';
 				return;
 			}
 			if (end <= start) {
@@ -53,39 +47,5 @@ angular.module('evaluationApp').controller('templatesController', [
 		}).error(function(data) {
 			// Handle this error!
 		});
-
-		  $scope.today = function() {
-    $scope.dt = new Date();
-  };
-  $scope.today();
-
-  $scope.clear = function () {
-    $scope.dt = null;
-  };
-
-  // Disable weekend selection
-  $scope.disabled = function(date, mode) {
-    return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 ) );
-  };
-
-  $scope.toggleMin = function() {
-    $scope.minDate = $scope.minDate ? null : new Date();
-  };
-  $scope.toggleMin();
-
-  $scope.open = function($event) {
-    $event.preventDefault();
-    $event.stopPropagation();
-
-    $scope.opened = true;
-  };
-
-  $scope.dateOptions = {
-    formatYear: 'yy',
-    startingDay: 1
-  };
-
-  $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
-  $scope.format = $scope.formats[0];
 	}
 ]);
