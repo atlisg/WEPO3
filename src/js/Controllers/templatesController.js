@@ -11,6 +11,7 @@ angular.module('evaluationApp').controller('templatesController', [
 		$scope.templates = {};
 		$scope.fullName = currentUser.fullName;
 		$scope.infoMessage = '';
+		$scope.dateMessage = '';
 		$scope.openDate = '';
 		$scope.closeDate = '';
 
@@ -21,15 +22,26 @@ angular.module('evaluationApp').controller('templatesController', [
 		$scope.makeEvaluation = function(id, startDate, endDate) {
 			var start = new Date(startDate).toISOString();
 			var end = new Date(endDate).toISOString();
+			var now = new Date().toISOString();
+			$scope.dateMessage = '';
+			$scope.currentID = id;
+			if (start <= now) {
+				$scope.dateMessage = 'Opnunardagsetning verður að vera á morgun eða seinna.';
+				//return;
+			}
+			if (end <= start) {
+				$scope.dateMessage = 'Lokunardagsetning verður að vera á eftir opnunardagsetningu.';
+				return;
+			}
 			var converter = {
 				TemplateID: id,
 				StartDate: start,
 				EndDate: end
 			};
 			adminResource.convertTemplate(converter).success(function(data) {
-				console.log("success!");
+				$location.path('/evaluations');
 			}).error(function(data) {
-				console.log("error...");
+				$scope.dateMessage = 'Villa! Ekki tókst að opna kennslumat.';
 			});
 		};
 

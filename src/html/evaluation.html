@@ -1,15 +1,15 @@
-<h2>{{evaluation.title}} <small>{{courseID}}</small></h2>
+<h2>{{model.title}} <small>{{model.courseID}}</small></h2>
 <div class="panel panel-default">
 	<div class="panel-heading">Lýsing</div>
 	<div class="panel-body">
-		{{evaluation.intro}}
+		{{model.intro}}
 	</div>
 </div>
 <div class="col-md-6">
 	<div class="panel panel-default">
 		<div class="panel-heading">Áfangaspurningar</div>
 		<div class="panel-body">
-			<evaluation-question ng­-model="evaluation.courseQ"  ng-repeat="question in evaluation.courseQ"></evaluation-question>
+			<evaluation-question ng-repeat="question in model.courseQ"></evaluation-question>
 		</div>
 	</div>
 </div>
@@ -18,14 +18,19 @@
 <div class="panel panel-default">
 	<div class="panel-heading">Kennaraspurningar</div>
 	<div class="panel-body">
-		<div ng-repeat="teacher in teachers" class="col-md-6">
+		<!-- Iterate through all of the teachers in the model -->
+		<div ng-repeat="teacher in model.teachers" class="col-md-6">
 			<div class="panel panel-default">
-				<div class="panel-heading answerEvaluationTeacherName"><img class="evaluation-teacher-image" src="{{teacher.ImageURL}}" alt="{{teacher.FullName}}" height="50">{{teacher.FullName}}</div>
+				<div class="panel-heading answerEvaluationTeacherName">
+					<img class="evaluation-teacher-image" src="{{teacher.ImageURL}}" alt="{{teacher.FullName}}" height="50"/>
+					{{teacher.FullName}}
+				</div>
 				<div class="panel-body">
-
-					<evaluation-question ng­-model="evaluation.teacherQ" ng-repeat="question in evaluation.teacherQ"></evaluation-question>
+					<!-- Go through all of the questions the teacher has. -->
+					<evaluation-question ng-repeat="question in teacher.questions"></evaluation-question>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
+<button class="btn btn-primary" ng-click="postEvaluation()">Svara</button>

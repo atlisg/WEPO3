@@ -22,6 +22,11 @@ angular.module('evaluationApp').factory('studentResource',
 			return $http.get(SERVER_URL + 'courses/' + course + '/' + semester + '/teachers');
 		};
 
+		factory.postEvaluation = function(course, semester, evaluation, evalData) {
+			$http.defaults.headers.common.Authorization = "Basic " + currentUser.token;
+			return $http.post(SERVER_URL + 'courses/' + course + '/' + semester + '/evaluations/' + evaluation, evalData);
+		};
+
 		return factory;
 	}
 );

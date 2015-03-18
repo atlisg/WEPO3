@@ -25,7 +25,6 @@ angular.module('evaluationApp').controller('authenticationController', [
 
 			studentResource.loginUser(loginObject).success(function(data) {
 				// Put in the data for the user that logged in.
-				console.log(currentUser.role);
 				$scope.getUserData(data);
 				$rootScope.$broadcast('userLoggedIn');
 				if (currentUser.role === 'admin') {
