@@ -1,21 +1,26 @@
 {{question.Text}}
+<!-- A text question -->
 <div ng-show="question.Type === 'text'">
-	<textarea rows="7"class="form-control"></textarea>
+	<textarea ng-model="answers[question.ID+teacher.SSN].Value" rows="7"class="form-control"></textarea>
 </div>
+
+<!-- A single choice question -->
 <div ng-show="question.Type === 'single'" ng-repeat="radioOption in question.Answers">
 	<div class="radio">
 		<label>
-			<input type="radio" name="{{question.ID}}{{teacher.SSN}}">
-			{{radioOption.Text}}
+			<input type="radio" ng-model="answers[question.ID+teacher.SSN].Value" ng-value="radioOption.ID" name="{{question.ID}}{{teacher.SSN}}">
+			{{radioOption.Text}} {{teacher.SSN}}
 		</label>
 	</div>
 </div>
+
+<!-- A multi choice question -->
 <div ng-show="question.Type === 'multiple'">
 	<div ng-repeat="checkOption in question.Answers">
 		<div class="checkbox">
 			<label>
-				<input type="checkbox" value="{{question.ID}}{{teacher.SSN}}">
-				{{checkOption.Text}}
+				<input type="checkbox" ng-model="answers[question.ID+teacher.SSN].Value[$index]" value="checkOption.ID">
+				{{checkOption.Text}} - {{$index}} <pre>{{question.ID+teacher.SSN | json}}</pre>
 			</label>
 		</div>
 	</div>
