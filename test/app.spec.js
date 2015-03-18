@@ -1,4 +1,4 @@
-describe('Testing Authentication Controller', function() {
+describe('authenticationController', function() {
   var $controller, $scope, $location;
 
   beforeEach(module('evaluationApp'));
