@@ -17,6 +17,9 @@
 			<label for="closingDate">Lokunardags:</label>
 			<input type="date" id="closingDate" name="closingDate" class="dateBox" ng-model="closeDate"></input>
 			<button type="submit" class="btn btn-primary green">Opna kennslumat</button>
+			<div class="alert alert-danger" ng-cloak ng-show="dateMessage !== '' && currentID === template.ID">
+				<span class="glyphicon glyphicon-exclamation-sign"></span>    {{dateMessage}}
+			</div>
 		</form>
 	</div>
 </div>

@@ -74,18 +74,6 @@ angular.module('evaluationApp').controller('evaluationResultsController', [
 				adminResource.getTeachersForCourse(courses[i].CourseID, courses[i].Semester).success($scope.getTeachers);
 
 			}
-			$scope.graphData["75"].push(34);
-			$scope.graphLabels["75"].push("Testing");
-			$scope.graphData["75"].push(65);
-			$scope.graphLabels["75"].push("Testing");
-			$scope.graphData["75"].push(133);
-			$scope.graphLabels["75"].push("Testing");
-
-			$scope.graphData["76"].push(37);
-			$scope.graphLabels["76"].push("Testing");
-			$scope.graphData["76"].push(59);
-			$scope.graphLabels["76"].push("Testing");
-
 		});
 
 $scope.populateGraph = function(list) {

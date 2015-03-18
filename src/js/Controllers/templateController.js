@@ -11,6 +11,9 @@ angular.module('evaluationApp').controller('templateController', [
 		$scope.template.TeacherQuestions = [];
 		$scope.answerID					 = 0;
 		$scope.questionID				 = 0;
+		$scope.dateMessage               = '';
+		$scope.currentID                 = 0;
+			
 		if ($routeParams.ID !== undefined) {
 			console.log("fetching info for " + $routeParams.ID);
 			adminResource.getTemplate($routeParams.ID).success(function(data) {
@@ -91,6 +94,32 @@ angular.module('evaluationApp').controller('templateController', [
 		$scope.saveTemplate = function() {
 			adminResource.createTemplate($scope.template);
 			$location.path('/templates');
+		};
+
+		$scope.makeEvaluation = function(id, startDate, endDate) {
+			var start = new Date(startDate).toISOString();
+			var end = new Date(endDate).toISOString();
+			var now = new Date().toISOString();
+			$scope.dateMessage = '';
+			$scope.currentID = id;
+			if (start <= now) {
+				$scope.dateMessage = 'Opnunardagsetning verður að vera á morgun eða seinna.';
+				return;
+			}
+			if (end <= start) {
+				$scope.dateMessage = 'Lokunardagsetning verður að vera á eftir opnunardagsetningu.';
+				return;
+			}
+			var converter = {
+				TemplateID: id,
+				StartDate: start,
+				EndDate: end
+			};
+			adminResource.convertTemplate(converter).success(function(data) {
+				$location.path('/evaluations');
+			}).error(function(data) {
+				$scope.dateMessage = 'Villa! Ekki tókst að opna kennslumat.';
+			});
 		};
 	}
 ]);

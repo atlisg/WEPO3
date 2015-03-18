@@ -1,7 +1,16 @@
 <h2 ng-show="template.ID">{{template.Title}}.</h2>
-<h2 ng-show="!template.ID">Nýtt Sniðmát.<button class="pull-right btn btn-default btn-primary" ng-click="saveTemplate()">Vista
-</button></h2>
-
+<h2 ng-show="!template.ID">Nýtt Sniðmát.</h2>
+<button class="pull-right btn btn-default btn-primary" ng-click="saveTemplate()">Vista</button>
+<form ng-show="template.ID" ng-submit="makeEvaluation(template.ID, openDate, closeDate)">
+	<label for="openingDate">Opnunardags:</label>
+	<input type="date" id="openingDate" name="openingDate" class="dateBox" ng-model="openDate"></input>
+	<label for="closingDate">Lokunardags:</label>
+	<input type="date" id="closingDate" name="closingDate" class="dateBox" ng-model="closeDate"></input>
+	<button type="submit" class="btn btn-primary green">Opna kennslumat</button>
+	<div class="alert alert-danger" ng-cloak ng-show="dateMessage !== '' && currentID === template.ID">
+		<span class="glyphicon glyphicon-exclamation-sign"></span>    {{dateMessage}}
+	</div>
+</form>
 <div class="form-group">
 	<form name="templateForm">
 		<label for="templateTitle" class="control-label">Titill sniðmáts</label>
