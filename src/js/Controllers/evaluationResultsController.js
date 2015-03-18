@@ -78,24 +78,24 @@ angular.module('evaluationApp').controller('evaluationResultsController', [
 			console.log($scope.graphData);
 		});
 
-$scope.populateGraph = function(list) {
-	var graphData = {};
-	var key, k;
-	for (var j = 0; j < list.length; j++) {
-		if (list[j].TeacherSSN === null) {
-			key = list[j].QuestionID;
-		} else {
-			key = list[j].QuestionID + list[j].TeacherSSN;
-		}
-		list[j].uniqueID = key;
-		graphData[key] = [];
-		$scope.graphData  [key] = [];
-		$scope.graphLabels[key] = [];
-		for (k = 0; k < list[j].OptionsResults.length; k++) {
-			graphData[key].push(list[j].OptionsResults[k].Count);
-			$scope.graphData[key].push(list[j].OptionsResults[k].Count);
-			$scope.graphLabels[key].push(list[j].OptionsResults[k].AnswerText);
-		}
-	}
-};
+		$scope.populateGraph = function(list) {
+			var graphData = {};
+			var key, k;
+			for (var j = 0; j < list.length; j++) {
+				if (list[j].TeacherSSN === null) {
+					key = list[j].QuestionID;
+				} else {
+					key = list[j].QuestionID + list[j].TeacherSSN;
+				}
+				list[j].uniqueID = key;
+				graphData[key] = [];
+				$scope.graphData  [key] = [];
+				$scope.graphLabels[key] = [];
+				for (k = 0; k < list[j].OptionsResults.length; k++) {
+					graphData[key].push(list[j].OptionsResults[k].Count);
+					$scope.graphData[key].push(list[j].OptionsResults[k].Count);
+					$scope.graphLabels[key].push(list[j].OptionsResults[k].AnswerText);
+				}
+			}
+		};
 }]);
