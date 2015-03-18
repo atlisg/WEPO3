@@ -1,8 +1,8 @@
 angular.module('evaluationApp').controller('authenticationController', [
 	'$scope', '$location', '$rootScope', '$routeParams', '$http', 'studentResource', 'currentUser',
 	function ($scope, $location, $rootScope, $routeParams, $http, studentResource, currentUser) {
-		$scope.user = 'bergthor13';
-		$scope.pass = '123456';
+		$scope.user = '';
+		$scope.pass = '';
 		$scope.errorMessage = '';
 		$scope.warningMessage = '';
 		$scope.submitted = false;
@@ -17,24 +17,15 @@ angular.module('evaluationApp').controller('authenticationController', [
 					// Put in the data for the user that logged in.
 					$scope.getUserData(data);
 					$rootScope.$broadcast('userLoggedIn');
-					$location.path('/evaluations');
+					if (currentUser.role === 'admin') {
+					$location.path('/templates');
+					} else {
+						$location.path('/evaluations');
+					}
 				}).error(function() {
 					$scope.errorMessage = 'Það kom upp villa. Þú hefur mögulega slegið inn rangt notandanafn eða lykilorð.';
 				});
 			}
-
-			studentResource.loginUser(loginObject).success(function(data) {
-				// Put in the data for the user that logged in.
-				$scope.getUserData(data);
-				$rootScope.$broadcast('userLoggedIn');
-				if (currentUser.role === 'admin') {
-					$location.path('/templates');
-				} else {
-					$location.path('/evaluations');
-				}
-			}).error(function() {
-				$scope.errorMessage = 'Það kom upp villa. Þú hefur mögulega slegið inn rangt notandanafn eða lykilorð.';
-			});
 		};
 
 		$scope.getUserData = function(loginData) {
@@ -54,9 +45,5 @@ angular.module('evaluationApp').controller('authenticationController', [
 			currentUser.ssn      = '';
 			currentUser.imageURL = '';
 			$location.path('/login');
-		};
-
-		$scope.testShit = function() {
-			return 1992;
 		};
 }]);
