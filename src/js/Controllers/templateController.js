@@ -1,6 +1,12 @@
 angular.module('evaluationApp').controller('templateController', [
 	'$scope', '$location', '$rootScope', '$routeParams', '$http', 'adminResource', 'currentUser',
 	function ($scope, $location, $rootScope, $routeParams, $http, adminResource, currentUser) {
+				// If the user didn't go through login,
+		// redirect them to the login page.
+		if(currentUser.username === '') {
+			$location.path('/login');
+			return;
+		}
 		$scope.template                  = {};
 		$scope.template.ID               = $routeParams.ID;
 		$scope.template.Title            = '';
@@ -42,7 +48,6 @@ angular.module('evaluationApp').controller('templateController', [
 					Weight: 5
 				}]
 			};
-			console.log(newQ);
 			if (type === 'course') {
 				$scope.template.CourseQuestions.push(newQ);
 			} else if (type === 'teacher') {
@@ -91,6 +96,10 @@ angular.module('evaluationApp').controller('templateController', [
 			}
 		};
 
+		$scope.callTemplate = function() {
+			console.log($scope.template);
+		};
+
 		$scope.saveTemplate = function() {
 			adminResource.createTemplate($scope.template);
 			$location.path('/templates');
@@ -115,6 +124,7 @@ angular.module('evaluationApp').controller('templateController', [
 				StartDate: start,
 				EndDate: end
 			};
+
 			adminResource.convertTemplate(converter).success(function(data) {
 				$location.path('/evaluations');
 			}).error(function(data) {
