@@ -3,22 +3,26 @@ describe("controller: authenticationController", function() {
   var $scope, myService, $location
 
   beforeEach(module('evaluationApp'));
-  beforeEach(inject(function(_$controller_, _$scope_, _$location_){
-  	// Create a new scope:
-  	$scope = _$scope_;
+  beforeEach(inject(function (_$controller_, _$rootScope_, _$location_) {
     $controller = _$controller_;
-    $location = _$location_;
-
-  beforeEach(inject(function($rootScope, _myService_, _$location_) {
-    $scope = $rootScope.$new();
-    myService = _myService_;
+    $rootScope = _$rootScope_;
     $location = _$location_;
   }));
 
   it('should work', function() {
     // Do something
     // Expect something
+    expect(5).toBe(5);
   });
+
+  /*it('testShit', function() {
+    controller = $controller('authenticationController', {
+        $scope: $scope
+    });
+    var result = $scope.testShit();
+    expect(result).toBe(1992);
+  });*/
+
 })
 
 /*describe('Posts', function() {
@@ -71,5 +75,5 @@ describe("controller: authenticationController", function() {
     };
     post.accept(postToAccept, fn);
     expect(fn).toHaveBeenCalled();
-  });*/
-});
+  });
+});*/
