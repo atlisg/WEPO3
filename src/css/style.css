@@ -1,131 +1,92 @@
 * {
-	font-family: "consolas";
+  font-family: "consolas";
 }
-
-#chatBody {
-	background-color: #888888;
+#evaluationBody {
+  background-color: #888888;
 }
-#users-in-room-list {
-	margin-top:10px;
-	list-style-type: none;
-}
-
-#users-in-room-list li {
-	margin-bottom:8px;
-	margin-left:-20px;
-}
-
-#users-in-room-buttons {
-	margin-right:20px;
-}
-.usersInRoomButtons {
-	margin-top:-5px;
-	margin-left:10px;
-}
-
-#users-in-room-list-container {
-	margin-top:-39px;
-}
-
 .btn.btn-primary {
-	margin-top: 10px;
-	margin-bottom: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 .main-view {
-	padding-top:70px;
+  padding-top: 70px;
 }
-
 .panel-heading {
-	text-align: center;
+  text-align: center;
 }
-
 #login-password {
-	margin-top:20px;
+  margin-top: 20px;
 }
-
 .validationLabel {
-	color:red;
+  color: red;
 }
-
 #login-error-message {
-	margin-top:10px;
+  margin-top: 10px;
 }
-
 .evaluationsTemplateName {
-	font-size:18px;
+  font-size: 18px;
 }
-
 .studentEvaluationLink {
-	text-decoration: none;
+  text-decoration: none;
 }
-
 #admin-evaluation-well {
-	padding:10px;
+  padding: 10px;
 }
-
 #admin-evaluation-well-dates {
-	width:200px;
+  width: 200px;
 }
-
-#admin-evaluation-well-name {
-}
-
 .noAnswerTextQuestions {
-	font-style: italic;
+  font-style: italic;
 }
-
 .questionBox {
-	border: solid 2px gray;
-	padding: 10px;
-	margin-top: 5px;
+  border: solid 2px gray;
+  padding: 10px;
+  margin-top: 5px;
+  background-color: silver;
+  border-radius: 5%;
 }
-
 .answerBox {
-	border: solid 2px rosybrown;
-	padding: 10px;
-	margin: 5px;
+  border: solid 2px rosybrown;
+  padding: 10px;
+  margin: 5px;
+  background-color: slategray;
+  color: white;
+  border-radius: 5%;
 }
-
 .dateBox {
-	height:30px;
-	width:150px;
-	border-radius: 5px;
+  height: 30px;
+  width: 150px;
+  border-radius: 5px;
 }
-
 .sidePadding {
-	padding:0px 10px;
+  padding: 0px 10px;
 }
-
 .green {
-	background-color: green;
+  background-color: green;
 }
-
 .green:hover {
-	background-color: darkgreen;
+  background-color: darkgreen;
 }
-
 .removeQstnBtn {
-	color: white;
-	background-color: red;
+  color: white;
+  background-color: red;
 }
-
 .removeChseBtn {
-	color: white;
-	background-color: orange;
+  color: white;
+  background-color: orange;
 }
-
 .evaluation-teacher-image {
-	text-align:left;
+  text-align: left;
 }
-
 .answerEvaluationTeacherName {
-	text-align: left;
+  text-align: left;
 }
-
 .answerEvaluationTeacherName img {
-	margin-right:15px;
+  margin-right: 15px;
 }
-
 textarea {
-   resize:none;
+  resize: none;
+}
+select {
+  color: black;
 }
