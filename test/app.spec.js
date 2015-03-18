@@ -1,7 +1,7 @@
 describe('authenticationController', function() {
   var $controller, $scope, $location;
 
-  beforeEach(module('evaluationApp'));
+  beforeEach(module('evaluationApp', ['ngRoute', 'chart.js']));
   beforeEach(inject(function(_$controller_, _$scope_, _$location_){
   	// Create a new scope:
   	$scope = _$scope_;
@@ -14,7 +14,7 @@ describe('authenticationController', function() {
   // all test specs in this suite, and should reference
   // our authenticationController
 
-  /*describe('virkadu plis', function() {
+  describe('virkadu plis', function() {
     var $scope, controller;
 
     beforeEach(function() {
@@ -38,7 +38,7 @@ describe('authenticationController', function() {
     	expect(result).toBe(1992);
     	expect(result).not.toBe(1993);
     });
-  });*/
+  });
 });
 
 /*describe('evalutionResource tests', function (SERVER_URL){
