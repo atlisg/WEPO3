@@ -3,6 +3,7 @@ module.exports = function ( grunt ) {
 	grunt.loadNpmTasks('grunt-contrib-concat');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-contrib-cssmin');
+	grunt.loadNpmTasks('grunt-karma');
 	var taskConfig = {
 		jshint: {
 			src: ['src/js/*', '!src/js/app.concat.js', '!src/js/app.min.js'],
@@ -51,7 +52,29 @@ module.exports = function ( grunt ) {
 					'src/css/style.min.css': ['src/css/style.css']
 				}
 			}
+		},
+		karma: {
+		 	unit: {
+		 		options: {
+      				frameworks: ['jasmine'],
+      				singleRun: true,
+  		    		browsers: ['Chrome'],
+  		    		reporters: ['progress'/*, 'coverage'*/],
+  		    		preprocessors: {
+  		    			//'src/**/*.js': ['coverage']
+  		    		},
+		 			files: [
+		 				'bower_components/angular/angular.js',
+		 				'bower_components/angular-route/angular-route.js',
+		 				//'bower_components/angular-mocks/angular-mocks.js',
+		 				//'bower_components/angular-chart.js/angular-chart.js',
+		 				'src/js/**/*.js',
+      					'test/*.js'
+		 			]
+		 		}
+		 	}
 		}
+
 	};
 	grunt.initConfig(taskConfig);
 };

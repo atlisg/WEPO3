@@ -57,7 +57,7 @@ angular.module('evaluationApp').controller('authenticationController', [
 			$location.path('/login');
 		};
 
-		$rootScope.testShit = function() {
+		$scope.testShit = function() {
 			return 1992;
 		};
 }]);

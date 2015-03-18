@@ -1,26 +1,44 @@
-describe("Testing Authentication Controller", function() {
-/*	var ctrl, $scope;
+describe('Testing Authentication Controller', function() {
+  var $controller, $scope, $location;
 
-	beforeEach(angular.module("evaluationApp"));
-	beforeEach(inject(function($controller, $rootScope ){
-		// Create a new scope:
-		$scope = $rootScope.$new();
-		ctrl = $controller("authenticationController", { $scope: $scope });
-	}));
-	// The ctrl variable should now be accessible to
-	// all test specs in this suite, and should reference
-	// our authenticationController
+  beforeEach(module('evaluationApp'));
+  beforeEach(inject(function(_$controller_, _$scope_, _$location_){
+  	// Create a new scope:
+  	$scope = _$scope_;
+    $controller = _$controller_;
+    $location = _$location_;
 
-	it("Should ..", function(){
-		var result = ctrl.testShit();
-		expect(result).toBe(1992);
-		expect(result).not.toBe(1993);
-	});*/
+  	//ctrl = $controller("authenticationController", { $scope: $scope });
+  }));
+  // The ctrl variable should now be accessible to
+  // all test specs in this suite, and should reference
+  // our authenticationController
 
-  it ("Should work now", function(){
-    expect(15).toBe(15);
-    expect(15).not.toBe(13);
-  });
+  /*describe('virkadu plis', function() {
+    var $scope, controller;
+
+    beforeEach(function() {
+      $scope = {
+        user: '',
+        pass: '',
+        errorMessage: '',
+        warningMessage: '',
+        submitted: false
+      };
+
+      controller = $controller('authenticationController', {
+        $scope: $scope,
+        $rootScope: $rootScope,
+        $location: $location
+      });
+    });
+
+    it("Should ..", function(){
+    	var result = $scope.testShit();
+    	expect(result).toBe(1992);
+    	expect(result).not.toBe(1993);
+    });
+  });*/
 });
 
 /*describe('evalutionResource tests', function (SERVER_URL){
