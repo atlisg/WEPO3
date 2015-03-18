@@ -1,7 +1,4 @@
 <h4>{{question.Text}}</h4>
-<span for="{{question.ID}}{{teacher.SSN}}"
-	  class="validationLabel"
-	  ng-show="evaluationForm.{{question.ID}}{{teacher.SSN}}.$invalid">Nauðsynlegt!</span>
 <!-- A text question -->
 <div ng-show="question.Type === 'text'">
 	<textarea ng-model="answers[question.ID+teacher.SSN].Value" rows="7"class="form-control" name="{{question.ID}}{{teacher.SSN}}"></textarea>
