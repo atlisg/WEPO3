@@ -18,16 +18,16 @@
     <h1>Code coverage report for <span class="entity">./src/js/Controllers/evaluationController.js</span></h1>
     <h2>
         
-        Statements: <span class="metric">1.39% <small>(1 / 72)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Statements: <span class="metric">1.64% <small>(1 / 61)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
-        Branches: <span class="metric">0% <small>(0 / 14)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">0% <small>(0 / 12)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
-        Functions: <span class="metric">0% <small>(0 / 7)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">0% <small>(0 / 5)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
-        Lines: <span class="metric">1.43% <small>(1 / 70)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">1.69% <small>(1 / 59)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
     </h2>
@@ -137,42 +137,8 @@
 100
 101
 102
-103
-104
-105
-106
-107
-108
-109
-110
-111
-112
-113
-114
-115
-116
-117
-118
-119
-120
-121</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
+103</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -232,8 +198,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -278,23 +242,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">angular.module('evaluationApp').controller('evaluationController', [
 	'$scope', '$location', '$rootScope', '$routeParams', '$http', 'adminResource', 'studentResource', 'currentUser',
 <span class="fstat-no" title="function not covered" >	function ($scope, $location, $rootScope, $routeParams, $http, adminResource, studentResource, currentUser) {</span>
-		// If the user didn't go through login,
-		// redirect them to the login page.
-<span class="cstat-no" title="statement not covered" >		if(currentUser.username === '') {</span>
-<span class="cstat-no" title="statement not covered" >			$location.path('/login');</span>
-<span class="cstat-no" title="statement not covered" >			return;</span>
-		}
-<span class="cstat-no" title="statement not covered" >		$scope.addCheckedToModel = <span class="fstat-no" title="function not covered" >function(list) {</span></span>
-<span class="cstat-no" title="statement not covered" >			for (var i = 0; i &lt; list.length; i++) {</span>
-<span class="cstat-no" title="statement not covered" >				list[i].checked = true;</span>
-			}
-		};
 &nbsp;
-<span class="cstat-no" title="statement not covered" >		$scope.addSelectedToModel = <span class="fstat-no" title="function not covered" >function(list) {</span></span>
-<span class="cstat-no" title="statement not covered" >			for (var i = 0; i &lt; list.length; i++) {</span>
-<span class="cstat-no" title="statement not covered" >				list[i].selected = null;</span>
-			}
-		};
 <span class="cstat-no" title="statement not covered" >		$scope.evalID     = $routeParams.ID;</span>
 <span class="cstat-no" title="statement not covered" >		$scope.courseID   = $routeParams.courseID;</span>
 <span class="cstat-no" title="statement not covered" >		$scope.semesterID = $routeParams.semesterID;</span>
@@ -352,55 +300,53 @@
 						}
 					}
 				}
-<span class="cstat-no" title="statement not covered" >				console.log("ANS");</span>
-<span class="cstat-no" title="statement not covered" >				console.log($scope.answers);</span>
 			});
-});
+		});
 &nbsp;
-<span class="cstat-no" title="statement not covered" >$scope.postEvaluation = <span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >		$scope.postEvaluation = <span class="fstat-no" title="function not covered" >function() {</span></span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >	var arr = [];</span>
+<span class="cstat-no" title="statement not covered" >			var arr = [];</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >	for (var key in $scope.answers) {</span>
-<span class="cstat-no" title="statement not covered" >		if($scope.answers.hasOwnProperty(key)) {</span>
-			// console.log($scope.answers[key]);
-<span class="cstat-no" title="statement not covered" >			arr.push($scope.answers[key]);</span>
-		}
-	}
-&nbsp;
-<span class="cstat-no" title="statement not covered" >	var concatted = $scope.evaluationFromServer.CourseQuestions.concat($scope.evaluationFromServer.TeacherQuestions);</span>
-<span class="cstat-no" title="statement not covered" >	var returnObject = arr;</span>
-&nbsp;
-<span class="cstat-no" title="statement not covered" >	for (var i = 0; i &lt; arr.length; i++) {</span>
-<span class="cstat-no" title="statement not covered" >		if (arr[i].Value === null) {<span class="cstat-no" title="statement not covered" >continue;}</span></span>
-<span class="cstat-no" title="statement not covered" >		if (arr[i].Value.constructor === Array) {</span>
-<span class="cstat-no" title="statement not covered" >			for (var j = 0; j &lt; concatted.length; j++) {</span>
-<span class="cstat-no" title="statement not covered" >				for (var k = 0; k &lt; concatted[j].Answers.length; k++) {</span>
-<span class="cstat-no" title="statement not covered" >					if (arr[i].Value[k] === true) {</span>
-<span class="cstat-no" title="statement not covered" >						j=0;</span>
-<span class="cstat-no" title="statement not covered" >						while(arr[i].QuestionID !== concatted[j].ID) {<span class="cstat-no" title="statement not covered" >j=j+1;}</span></span>
-<span class="cstat-no" title="statement not covered" >						arr[i].Value[k] = concatted[j].Answers[k].ID;</span>
-					}
+<span class="cstat-no" title="statement not covered" >			for (var key in $scope.answers) {</span>
+<span class="cstat-no" title="statement not covered" >				if($scope.answers.hasOwnProperty(key)) {</span>
+					// console.log($scope.answers[key]);
+<span class="cstat-no" title="statement not covered" >					arr.push($scope.answers[key]);</span>
 				}
 			}
-<span class="cstat-no" title="statement not covered" >						console.log(arr[i].Value);</span>
-<span class="cstat-no" title="statement not covered" >			returnObject[i].Value = arr[i].Value.join();</span>
-<span class="cstat-no" title="statement not covered" >			console.log("CONCATTED");</span>
-<span class="cstat-no" title="statement not covered" >			console.log(concatted);</span>
-		}
-	}
-<span class="cstat-no" title="statement not covered" >	studentResource.postEvaluation($scope.courseID, $scope.semesterID, $scope.evalID, returnObject).success(<span class="fstat-no" title="function not covered" >function(data) {</span></span>
-<span class="cstat-no" title="statement not covered" >		$location.path("/evaluations");</span>
-	});
 &nbsp;
-};
-}
+<span class="cstat-no" title="statement not covered" >			var concatted = $scope.evaluationFromServer.CourseQuestions.concat($scope.evaluationFromServer.TeacherQuestions);</span>
+<span class="cstat-no" title="statement not covered" >			var returnObject = arr;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >			for (var i = 0; i &lt; arr.length; i++) {</span>
+<span class="cstat-no" title="statement not covered" >				if (arr[i].Value === null) {<span class="cstat-no" title="statement not covered" >continue;}</span></span>
+<span class="cstat-no" title="statement not covered" >				if (arr[i].Value.constructor === Array) {</span>
+<span class="cstat-no" title="statement not covered" >					for (var j = 0; j &lt; concatted.length; j++) {</span>
+<span class="cstat-no" title="statement not covered" >						for (var k = 0; k &lt; concatted[j].Answers.length; k++) {</span>
+<span class="cstat-no" title="statement not covered" >							if (arr[i].Value[k] === true) {</span>
+<span class="cstat-no" title="statement not covered" >								j=0;</span>
+<span class="cstat-no" title="statement not covered" >								while(arr[i].QuestionID !== concatted[j].ID) {<span class="cstat-no" title="statement not covered" >j=j+1;}</span></span>
+<span class="cstat-no" title="statement not covered" >								arr[i].Value[k] = concatted[j].Answers[k].ID;</span>
+							}
+						}
+					}
+<span class="cstat-no" title="statement not covered" >								console.log(arr[i].Value);</span>
+<span class="cstat-no" title="statement not covered" >					returnObject[i].Value = arr[i].Value.join();</span>
+<span class="cstat-no" title="statement not covered" >					console.log("CONCATTED");</span>
+<span class="cstat-no" title="statement not covered" >					console.log(concatted);</span>
+				}
+			}
+<span class="cstat-no" title="statement not covered" >			studentResource.postEvaluation($scope.courseID, $scope.semesterID, $scope.evalID, returnObject).success(<span class="fstat-no" title="function not covered" >function(data) {</span></span>
+<span class="cstat-no" title="statement not covered" >				$location.path("/evaluations");</span>
+			});
+&nbsp;
+		};
+	}
 ]);</pre></td></tr>
 </table></pre>
 
 </div>
 <div class="footer">
-    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Mar 18 2015 23:43:31 GMT+0000 (Greenwich Standard Time)</div>
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Mar 18 2015 23:53:51 GMT+0000 (Greenwich Standard Time)</div>
 </div>
 
 <script src="../../../prettify.js"></script>

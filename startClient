@@ -1,6 +1,7 @@
 #!/bin/bash
 pkill python
-grunt jshint
+grunt karma 
+grunt jshint &&
 grunt concat &&
 grunt uglify &&
 grunt less &&

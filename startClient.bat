@@ -1,3 +1,4 @@
+grunt karma &&
 grunt jshint &&
 grunt concat &&
 grunt uglify &&

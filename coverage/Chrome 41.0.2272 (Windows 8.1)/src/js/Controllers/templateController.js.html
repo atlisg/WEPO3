@@ -18,16 +18,16 @@
     <h1>Code coverage report for <span class="entity">./src/js/Controllers/templateController.js</span></h1>
     <h2>
         
-        Statements: <span class="metric">61.76% <small>(42 / 68)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Statements: <span class="metric">58.9% <small>(43 / 73)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
-        Branches: <span class="metric">55% <small>(11 / 20)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">42.31% <small>(11 / 26)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
         Functions: <span class="metric">41.67% <small>(5 / 12)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
-        Lines: <span class="metric">61.76% <small>(42 / 68)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">58.9% <small>(43 / 73)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
     </h2>
@@ -163,10 +163,17 @@
 126
 127
 128
-129</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
+129
+130
+131
+132
+133
+134
+135
+136</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8</span>
 <span class="cline-any cline-yes">8</span>
 <span class="cline-any cline-yes">8</span>
 <span class="cline-any cline-yes">8</span>
@@ -255,10 +262,17 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">8</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -294,7 +308,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">angular.module('evaluationApp').controller('templateController', [
 	'$scope', '$location', '$rootScope', '$routeParams', '$http', 'adminResource', 'currentUser',
 	function ($scope, $location, $rootScope, $routeParams, $http, adminResource, currentUser) {
-		
+		$scope.errorMessage = '';
 		$scope.template                  = {};
 		$scope.template.ID               = $routeParams.ID;
 		$scope.template.Title            = '';
@@ -383,13 +397,20 @@
 				}
 			}
 		};
-&nbsp;
 		$scope.saveTemplate = <span class="fstat-no" title="function not covered" >function() {</span>
-<span class="cstat-no" title="statement not covered" >			adminResource.createTemplate($scope.template).success(<span class="fstat-no" title="function not covered" >function() {</span></span>
-<span class="cstat-no" title="statement not covered" >				$location.path('/templates');</span>
-			}).error(<span class="fstat-no" title="function not covered" >function() {</span>
-<span class="cstat-no" title="statement not covered" >				$scope.dateMessage = 'Villa! Ekki tókst að opna kennslumat.';</span>
-			});
+<span class="cstat-no" title="statement not covered" >			if ($scope.templateForm.$valid) {</span>
+<span class="cstat-no" title="statement not covered" >				if($scope.template.CourseQuestions.length === 0 || $scope.template.TeacherQuestions === 0) {</span>
+<span class="cstat-no" title="statement not covered" >					$scope.errorMessage = 'Þú verður að hafa að minnsta kosti eina spurningu í sniðmátinu.';</span>
+				} else {
+<span class="cstat-no" title="statement not covered" >					adminResource.createTemplate($scope.template).success(<span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >						$location.path('/templates');</span>
+					}).error(<span class="fstat-no" title="function not covered" >function() {</span>
+<span class="cstat-no" title="statement not covered" >						$scope.errorMessage = 'Villa! Ekki tókst að vista sniðmát.';</span>
+					});
+				}
+			} else {
+<span class="cstat-no" title="statement not covered" >				$scope.errorMessage = 'Þú hefur ekki fyllt út í alla nauðsynlega reiti.';</span>
+			}
 		};
 &nbsp;
 		$scope.makeEvaluation = <span class="fstat-no" title="function not covered" >function(id, startDate, endDate) {</span>
@@ -399,7 +420,7 @@
 <span class="cstat-no" title="statement not covered" >			$scope.dateMessage = '';</span>
 <span class="cstat-no" title="statement not covered" >			$scope.currentID = id;</span>
 <span class="cstat-no" title="statement not covered" >			if (start &lt; now) {</span>
-<span class="cstat-no" title="statement not covered" >				$scope.dateMessage = 'Opnunardagsetning verður að vera í dag eða seinna.';</span>
+<span class="cstat-no" title="statement not covered" >				$scope.dateMessage = 'Opnunardagsetning verður að vera á morgun eða seinna.';</span>
 <span class="cstat-no" title="statement not covered" >				return;</span>
 			}
 <span class="cstat-no" title="statement not covered" >			if (end &lt;= start) {</span>
@@ -424,7 +445,7 @@
 
 </div>
 <div class="footer">
-    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Mar 18 2015 23:43:31 GMT+0000 (Greenwich Standard Time)</div>
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Mar 18 2015 23:53:51 GMT+0000 (Greenwich Standard Time)</div>
 </div>
 
 <script src="../../../prettify.js"></script>
