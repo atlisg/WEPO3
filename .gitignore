@@ -1,3 +1,4 @@
 *.sublime*
 src/js/app.concat.js
 src/js/app.min.js
+npm-debug.log

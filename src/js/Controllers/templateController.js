@@ -15,7 +15,6 @@ angular.module('evaluationApp').controller('templateController', [
 		$scope.currentID                 = 0;
 			
 		if ($routeParams.ID !== undefined) {
-			console.log("fetching info for " + $routeParams.ID);
 			adminResource.getTemplate($routeParams.ID).success(function(data) {
 				$scope.template.ID               = data.ID;
 				$scope.template.Title            = data.Title;
