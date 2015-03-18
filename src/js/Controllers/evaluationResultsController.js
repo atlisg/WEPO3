@@ -38,6 +38,7 @@ angular.module('evaluationApp').controller('evaluationResultsController', [
 		};
 
 		adminResource.getEvaluationResults($scope.evalID).success(function(data) {
+			console.log(data);
 			$scope.evaluation = data;
 			if(data.Courses.length === 0) {
 				$scope.infoMessage = "Því miður hefur enginn svarað þessu kennslumati. Vinsamlega reynið aftur síðar.";

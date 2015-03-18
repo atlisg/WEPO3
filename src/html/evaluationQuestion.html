@@ -1,4 +1,4 @@
-{{question.Text}}
+<h4>{{question.Text}}</h4>
 <!-- A text question -->
 <div ng-show="question.Type === 'text'">
 	<textarea ng-model="answers[question.ID+teacher.SSN].Value" rows="7"class="form-control"></textarea>
@@ -9,7 +9,7 @@
 	<div class="radio">
 		<label>
 			<input type="radio" ng-model="answers[question.ID+teacher.SSN].Value" ng-value="radioOption.ID" name="{{question.ID}}{{teacher.SSN}}">
-			{{radioOption.Text}} {{teacher.SSN}}
+			{{radioOption.Text}}
 		</label>
 	</div>
 </div>
@@ -25,4 +25,4 @@
 		</div>
 	</div>
 </div>
-<hr/>
+<hr ng-if="!$last"/>

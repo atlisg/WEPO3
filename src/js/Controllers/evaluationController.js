@@ -93,6 +93,7 @@ $scope.postEvaluation = function() {
 	}
 
 	var concatted = $scope.evaluationFromServer.CourseQuestions.concat($scope.evaluationFromServer.TeacherQuestions);
+	var returnObject = arr;
 
 	for (var i = 0; i < arr.length; i++) {
 		if (arr[i].Value === null) {continue;}
@@ -100,19 +101,23 @@ $scope.postEvaluation = function() {
 			for (var j = 0; j < concatted.length; j++) {
 				for (var k = 0; k < concatted[j].Answers.length; k++) {
 					if (arr[i].Value[k] === true) {
+						j=0;
+						while(arr[i].QuestionID !== concatted[j].ID) {j=j+1;}
 						arr[i].Value[k] = concatted[j].Answers[k].ID;
 					}
 				}
 			}
-			console.log(arr[i].Value);
-			arr[i].Value = arr[i].Value.join();
+						console.log(arr[i].Value);
+			returnObject[i].Value = arr[i].Value.join();
+			console.log("CONCATTED");
+			console.log(concatted);
 		}
 	}
-	studentResource.postEvaluation($scope.courseID, $scope.semesterID, $scope.evalID, arr).success(function(data) {
-		console.log("success");
-		console.log(data);
+	console.log(returnObject);
+	studentResource.postEvaluation($scope.courseID, $scope.semesterID, $scope.evalID, returnObject).success(function(data) {
+		$location.path("/evaluations");
 	});
-	//console.log(arr);
+
 };
 }
 ]);
