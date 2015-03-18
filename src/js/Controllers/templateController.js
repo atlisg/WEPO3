@@ -1,7 +1,7 @@
 angular.module('evaluationApp').controller('templateController', [
 	'$scope', '$location', '$rootScope', '$routeParams', '$http', 'adminResource', 'currentUser',
 	function ($scope, $location, $rootScope, $routeParams, $http, adminResource, currentUser) {
-		
+		$scope.errorMessage = '';
 		$scope.template                  = {};
 		$scope.template.ID               = $routeParams.ID;
 		$scope.template.Title            = '';
@@ -90,13 +90,20 @@ angular.module('evaluationApp').controller('templateController', [
 				}
 			}
 		};
-
 		$scope.saveTemplate = function() {
-			adminResource.createTemplate($scope.template).success(function() {
-				$location.path('/templates');
-			}).error(function() {
-				$scope.dateMessage = 'Villa! Ekki tókst að opna kennslumat.';
-			});
+			if ($scope.templateForm.$valid) {
+				if($scope.template.CourseQuestions.length === 0 || $scope.template.TeacherQuestions === 0) {
+					$scope.errorMessage = 'Þú verður að hafa að minnsta kosti eina spurningu í sniðmátinu.';
+				} else {
+					adminResource.createTemplate($scope.template).success(function() {
+						$location.path('/templates');
+					}).error(function() {
+						$scope.errorMessage = 'Villa! Ekki tókst að vista sniðmát.';
+					});
+				}
+			} else {
+				$scope.errorMessage = 'Þú hefur ekki fyllt út í alla nauðsynlega reiti.';
+			}
 		};
 
 		$scope.makeEvaluation = function(id, startDate, endDate) {
@@ -106,7 +113,7 @@ angular.module('evaluationApp').controller('templateController', [
 			$scope.dateMessage = '';
 			$scope.currentID = id;
 			if (start < now) {
-				$scope.dateMessage = 'Opnunardagsetning verður að vera í dag eða seinna.';
+				$scope.dateMessage = 'Opnunardagsetning verður að vera á morgun eða seinna.';
 				return;
 			}
 			if (end <= start) {

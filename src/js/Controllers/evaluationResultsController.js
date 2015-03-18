@@ -71,7 +71,6 @@ angular.module('evaluationApp').controller('evaluationResultsController', [
 				console.log($scope.graphData);
 				$scope.populateGraph($scope.evaluation.Courses[i].courseOtherQuestions);
 				$scope.populateGraph($scope.evaluation.Courses[i].teacherOtherQuestions);
-				//$scope.evaluation.Courses = courses;
 
 				adminResource.getTeachersForCourse($scope.evaluation.Courses[i].CourseID, $scope.evaluation.Courses[i].Semester).success($scope.getTeachers);
 

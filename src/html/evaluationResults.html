@@ -1,11 +1,11 @@
-<h2>Niðurstöður kennslumats <small>{{evaluation.TemplateTitle}}</small></h2>
+<h2>Niðurstöður kennslumats <small class="subtext">{{evaluation.TemplateTitle}}</small></h2>
 <div class="alert alert-info" ng-cloak ng-show="infoMessage != ''">
 	<span class="glyphicon glyphicon-info-sign"></span>    {{infoMessage}}
 </div>
 
 <!-- Iterate through every course -->
 <div class="class-results" ng-repeat="course in evaluation.Courses">
-	<h3>{{course.CourseName}} <small>{{course.CourseID}}</small></h3>
+	<h3>{{course.CourseName}} <small class="subtext">{{course.CourseID}}</small></h3>
 	<hr>
 	<div class="panel panel-default">
 		<div class="panel-heading"><h3 class="panel-title">Áfangaspurningar</h3><span ng-if="oquest.TeacherSSN != undefined"></span></div>

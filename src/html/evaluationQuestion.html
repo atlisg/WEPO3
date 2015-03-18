@@ -1,14 +1,17 @@
 <h4>{{question.Text}}</h4>
+<span for="{{question.ID}}{{teacher.SSN}}"
+	  class="validationLabel"
+	  ng-show="evaluationForm.{{question.ID}}{{teacher.SSN}}.$invalid">Nauðsynlegt!</span>
 <!-- A text question -->
 <div ng-show="question.Type === 'text'">
-	<textarea ng-model="answers[question.ID+teacher.SSN].Value" rows="7"class="form-control"></textarea>
+	<textarea ng-model="answers[question.ID+teacher.SSN].Value" rows="7"class="form-control" name="{{question.ID}}{{teacher.SSN}}"></textarea>
 </div>
 
 <!-- A single choice question -->
 <div ng-show="question.Type === 'single'" ng-repeat="radioOption in question.Answers">
 	<div class="radio">
 		<label>
-			<input type="radio" ng-model="answers[question.ID+teacher.SSN].Value" ng-value="radioOption.ID" name="{{question.ID}}{{teacher.SSN}}">
+			<input type="radio" ng-model="answers[question.ID+teacher.SSN].Value" ng-value="radioOption.ID" name="{{question.ID}}{{teacher.SSN}}" ng-required="answers[question.ID+teacher.SSN].Value">
 			{{radioOption.Text}}
 		</label>
 	</div>
@@ -17,9 +20,10 @@
 <!-- A multi choice question -->
 <div ng-show="question.Type === 'multiple'">
 	<div ng-repeat="checkOption in question.Answers">
+
 		<div class="checkbox">
 			<label>
-				<input type="checkbox" ng-model="answers[question.ID+teacher.SSN].Value[$index]" value="checkOption.ID">
+				<input type="checkbox" name="{{question.ID}}{{teacher.SSN}}" ng-model="answers[question.ID+teacher.SSN].Value[$index]" value="checkOption.ID" required>
 				{{checkOption.Text}}
 			</label>
 		</div>

@@ -18,6 +18,7 @@ angular.module('evaluationApp').controller('evaluationController', [
 				list[i].selected = null;
 			}
 		};
+
 		$scope.evalID     = $routeParams.ID;
 		$scope.courseID   = $routeParams.courseID;
 		$scope.semesterID = $routeParams.semesterID;
@@ -75,8 +76,6 @@ angular.module('evaluationApp').controller('evaluationController', [
 						}
 					}
 				}
-				console.log("ANS");
-				console.log($scope.answers);
 			});
 });
 
@@ -96,6 +95,7 @@ $scope.postEvaluation = function() {
 
 	for (var i = 0; i < arr.length; i++) {
 		if (arr[i].Value === null) {continue;}
+
 		if (arr[i].Value.constructor === Array) {
 			for (var j = 0; j < concatted.length; j++) {
 				for (var k = 0; k < concatted[j].Answers.length; k++) {

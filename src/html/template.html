@@ -1,3 +1,7 @@
+<div class="alert alert-danger" ng-cloak ng-show="errorMessage != ''">
+	<span class="glyphicon glyphicon-exclamation-sign"></span>    {{errorMessage}}
+</div>
+
 <h2 ng-show="template.ID">{{template.Title}}.</h2>
 <h2 ng-show="!template.ID">Nýtt Sniðmát.</h2>
 <button class="pull-right btn btn-default btn-primary" ng-click="saveTemplate()">Vista</button>
@@ -12,26 +16,47 @@
 	</div>
 </form>
 <div class="form-group">
-	<form name="templateForm">
+	<form name="templateForm" novalidate>
 		<label for="templateTitle" class="control-label">Titill sniðmáts</label>
-		<input type="text" class="form-control" id="templateTitle" name="templateTitle" ng-model="template.Title" placeholder="" required/>
+		<span for="templateTitle"
+					  class="validationLabel"
+					  ng-show="templateForm.templateTitle.$invalid">Nauðsynlegt!</span>
+		<input type="text" class="form-control" id="templateTitle" name="templateTitle" ng-model="template.Title" placeholder="" ng-minlength = "1" required/>
+
 		<label for="templateTitleEN" class="control-label">Titill sniðmáts á ensku</label>
-		<input type="text" class="form-control" id="templateTitleEN" name="templateTitleEN" ng-model="template.TitleEN" placeholder="" required/>
+		<span for="templateTitleEN"
+					  class="validationLabel"
+					  ng-show="templateForm.templateTitleEN.$invalid">Nauðsynlegt!</span>
+		<input type="text" class="form-control" id="templateTitleEN" name="templateTitleEN" ng-model="template.TitleEN" placeholder="" ng-minlength = "1" required/>
+
 		<label for="templateIntro" class="control-label">Kynningartexti sniðmáts</label>
-		<textarea class="form-control" id="templateIntro" name="templateIntro" ng-model="template.IntroText" required></textarea>
+		<span for="templateIntro"
+					  class="validationLabel"
+					  ng-show="templateForm.templateIntro.$invalid">Nauðsynlegt!</span>
+		<textarea class="form-control" id="templateIntro" name="templateIntro" ng-model="template.IntroText" ng-minlength = "1" required></textarea>
+
 		<label for="templateIntroEN" class="control-label">Kynningartexti sniðmáts á ensku</label>
-		<textarea class="form-control" id="templateIntroEN" name="templateIntroEN" ng-model="template.IntroTextEN" required><textarea/>
+		<span for="templateIntroEN"
+					  class="validationLabel"
+					  ng-show="templateForm.templateIntroEN.$invalid">Nauðsynlegt!</span>
+		<textarea class="form-control" id="templateIntroEN" name="templateIntroEN" ng-model="template.IntroTextEN" ng-minlength = "1" required><textarea/>
 
 		<div class="col-md-6">
 			<h4>Námskeiðsspurningar</h4>
 			<div ng-repeat="question in template.CourseQuestions" class="questionBox">
 				<label for="questionText" class="control-label">Texti spurningar á íslensku</label>
+				<span for="questionText"
+					  class="validationLabel"
+					  ng-show="templateForm.questionText.$invalid">Nauðsynlegt!</span>
 				<button class="pull-right btn btn-default btn-xs removeQstnBtn" ng-click="removeQuestion(question.ID, 'course')"><span class="glyphicon glyphicon-remove"></span></button>
-				<textarea class="form-control" id="questionText" name="questionText" ng-model="question.Text" placeholder="{{question.Text}}"></textarea>
+				<textarea class="form-control" id="questionText" name="questionText" ng-model="question.Text" placeholder="{{question.Text}}" ng-minlength = "1" required></textarea>
+
 				<label for="questionTextEN" class="control-label">Texti spurningar á ensku</label>
-				<textarea class="form-control" id="questionTextEN" name="questionTextEN" ng-model="question.TextEN" placeholder="{{question.textEN}}"></textarea>
+				<textarea class="form-control" id="questionTextEN" name="questionTextEN" ng-model="question.TextEN" placeholder="{{question.textEN}}" required></textarea>
+
 				<label for="URL" class="control-label">Mynd (URL)</label>
 				<input type="text" class="form-control" id="URL" name="URL" ng-model="question.ImageURL"></input>
+
 				<label for="type">Tegund spurningar</label>
 				<div ng-repeat="option in options">
 					<input type="radio" value="{{option}}" name="{{question.ID}}.course" ng-model="question.Type"> {{option}}
@@ -40,7 +65,7 @@
 				<div ng-show="question.Type !== 'text'" ng-repeat="answer in question.Answers" class="answerBox">
 					<label for="answerText" class="control-label">Svarmöguleiki á íslensku</label>
 					<button class="pull-right btn btn-default btn-xs removeChseBtn" ng-click="removeChoice(answer.ID, question)"><span class="glyphicon glyphicon-remove"></span></button>
-					<textarea class="form-control" id="answerText" name="answerText" ng-model="answer.Text"></textarea>
+					<textarea class="form-control" id="answerText" name="answerText" ng-model="answer.Text" ng-minlength = "1"></textarea>
 					<label for="answerTextEN" class="control-label">Svarmöguleiki á ensku</label>
 					<textarea class="form-control" id="answerTextEN" name="answerTextEN" ng-model="answer.TextEN"></textarea>
 					<label for="answerURL" class="control-label">Mynd (URL)</label>
@@ -62,6 +87,9 @@
 			<h4>Kennaraspurningar</h4>
 			<div ng-repeat="question in template.TeacherQuestions" class="questionBox">
 				<label for="questionText" class="control-label">Texti spurningar á íslensku</label>
+				<span for="questionText"
+					  class="validationLabel"
+					  ng-show="templateForm.questionText.$invalid">Nauðsynlegt!</span>
 				<button class="pull-right btn btn-default btn-xs removeQstnBtn" ng-click="removeQuestion(question.ID, 'teacher')"><span class="glyphicon glyphicon-remove"></span></button>
 				<textarea class="form-control" id="questionText" name="questionText" ng-model="question.Text" placeholder="{{question.Text}}"></textarea>
 				<label for="questionTextEN" class="control-label">Texti spurningar á ensku</label>
