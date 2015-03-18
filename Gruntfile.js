@@ -3,6 +3,7 @@ module.exports = function ( grunt ) {
 	grunt.loadNpmTasks('grunt-contrib-concat');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-contrib-cssmin');
+	grunt.loadNpmTasks('grunt-contrib-less');
 	grunt.loadNpmTasks('grunt-karma');
 	var taskConfig = {
 		jshint: {
@@ -52,6 +53,12 @@ module.exports = function ( grunt ) {
 					'src/css/style.min.css': ['src/css/style.css']
 				}
 			}
+		},
+		less: {
+			bar: {
+		      src: 'src/css/style.less',
+		      dest: 'src/css/style.css'
+		    }
 		},
 		karma: {
 		 	unit: {
